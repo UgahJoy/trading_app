@@ -101,7 +101,7 @@ class ActionItems extends StatelessWidget {
           child: Center(child: Image.asset(image, height: 24)),
         ),
         Gap(8),
-        Text(text),
+        Text(text, maxLines: 1, overflow: TextOverflow.ellipsis),
       ],
     );
   }

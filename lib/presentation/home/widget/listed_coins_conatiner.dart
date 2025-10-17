@@ -74,26 +74,24 @@ class CoinItems extends StatelessWidget {
               children: [
                 Text(
                   coinName,
-                  style: header.copyWith(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: header2.copyWith(fontSize: 15),
                 ),
                 Gap(4),
                 Text(nickName),
               ],
             ),
           ),
-
+          Gap(20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
                 rate,
-                style: header.copyWith(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: header2.copyWith(fontSize: 15),
               ),
               Gap(4),
               Text(

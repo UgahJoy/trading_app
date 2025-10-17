@@ -2,18 +2,20 @@ import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:trading_app/helper_files/app_router.dart';
+import 'package:trading_app/presentation/home/widget/trade_dialogue.dart';
 import 'package:trading_app/shared_widgets/app_InkWell.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class AppNavBar extends StatefulWidget {
-  const AppNavBar({super.key});
+class AppNavBar extends StatelessWidget {
+  final int currentIndex;
+  final Function(int) onPageChanged;
+  AppNavBar({
+    super.key,
+    required this.currentIndex,
+    required this.onPageChanged,
+  });
 
-  @override
-  State<AppNavBar> createState() => _AppNavBarState();
-}
-
-class _AppNavBarState extends State<AppNavBar> {
-  int currentIndex = 0;
   final AnimateIconController controller = AnimateIconController();
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,7 @@ class _AppNavBarState extends State<AppNavBar> {
                 child: NavBarItems(
                   image: "assets/home.png",
                   onTap: () {
-                    setState(() {
-                      currentIndex = 0;
-                    });
+                    onPageChanged(0);
                   },
                   text: "Home",
                   index: 0,
@@ -42,9 +42,7 @@ class _AppNavBarState extends State<AppNavBar> {
                 child: NavBarItems(
                   image: "assets/wallet.png",
                   onTap: () {
-                    setState(() {
-                      currentIndex = 1;
-                    });
+                    onPageChanged(1);
                   },
                   text: "Wallet",
                   index: 1,
@@ -77,9 +75,14 @@ class _AppNavBarState extends State<AppNavBar> {
 
                           size: 24.0,
                           onStartIconPress: () {
+                            AppRouter.pushDialog(TradeDialogue()).then((_) {
+                              controller.animateToStart();
+                            });
+
                             return true;
                           },
                           onEndIconPress: () {
+                            Navigator.pop(context);
                             return true;
                           },
                           duration: Duration(milliseconds: 500),
@@ -100,11 +103,7 @@ class _AppNavBarState extends State<AppNavBar> {
                 child: NavBarItems(
                   image: "assets/transaction.png",
                   onTap: () {
-                    setState(() {
-                      setState(() {
-                        currentIndex = 2;
-                      });
-                    });
+                    onPageChanged(2);
                   },
                   text: "History",
                   index: 2,
@@ -115,9 +114,7 @@ class _AppNavBarState extends State<AppNavBar> {
                 child: NavBarItems(
                   image: "assets/profile.png",
                   onTap: () {
-                    setState(() {
-                      currentIndex = 3;
-                    });
+                    onPageChanged(3);
                   },
                   text: "Profile",
                   index: 3,

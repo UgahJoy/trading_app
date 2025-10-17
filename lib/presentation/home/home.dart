@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -20,7 +21,9 @@ class Home extends ConsumerStatefulWidget {
 
 class _HomeState extends ConsumerState<Home> {
   int currentIndex = 0;
-  final controller = ScrollController();
+  final CarouselSliderController _carouselController =
+      CarouselSliderController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,14 +71,21 @@ class _HomeState extends ConsumerState<Home> {
               ),
 
               Gap(12),
-              SizedBox(
-                height: 90,
-                child: ListView.builder(
-                  reverse: true,
-                  controller: controller,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 6,
-                  itemBuilder: (context, index) => Updates(index: index),
+              CarouselSlider.builder(
+                itemBuilder: (context, index, realIndex) =>
+                    Updates(index: index),
+                carouselController: _carouselController,
+                itemCount: 6,
+                options: CarouselOptions(
+                  autoPlayAnimationDuration: Duration(seconds: 2),
+                  viewportFraction: 0.9,
+                  autoPlay: true,
+                  height: 90,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
                 ),
               ),
 
@@ -86,8 +96,11 @@ class _HomeState extends ConsumerState<Home> {
                   (index) => UpdateIndicator(
                     onTap: () {
                       setState(() {
-                        // controller.jumpTo(currentIndex);
-                        currentIndex = index;
+                        _carouselController.animateToPage(
+                          index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeOut,
+                        );
                       });
                     },
                     index: index,

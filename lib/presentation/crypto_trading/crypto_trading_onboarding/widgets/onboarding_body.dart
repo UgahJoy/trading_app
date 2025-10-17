@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:trading_app/presentation/onboarding/widgets/progress_indicator.dart';
+import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/progress_indicator.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 

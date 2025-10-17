@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/onboarding/risk_level.dart';
-import 'package:trading_app/presentation/onboarding/widgets/bottom_nav.dart';
-import 'package:trading_app/presentation/onboarding/widgets/onboarding_body.dart';
+import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/risk_level.dart';
+import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/bottom_nav.dart';
+import 'package:trading_app/shared_widgets/app_bar_item.dart';
+import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/onboarding_body.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
-import 'package:trading_app/theme/app_textstyle.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -53,16 +53,13 @@ class _OnboardingState extends State<Onboarding> {
     return AppScaffold(
       bottomNavigationBar: BottomNav(
         buttonText: "Get started",
-        onTap: () => AppRouter.replaceWith(RiskLevel()),
+        onTap: () => AppRouter.navigateTo(RiskLevel()),
       ),
       body: Column(
         children: [
           Gap(topPadding),
 
-          Align(
-            alignment: Alignment.center,
-            child: Text("Copy trading", style: subHeader),
-          ),
+          AppBarItem(text: "Copy trading"),
           Expanded(
             child: PageView.builder(
               itemCount: data.length,

@@ -23,7 +23,7 @@ ThemeData appTheme = ThemeData(
       fontSize: 12,
       fontFamily: "Inter",
       fontWeight: FontWeight.w400,
-      color: AppColors.bodyTextColor,
+      color: AppColors.iconGrey,
     ),
   ),
   useMaterial3: false,

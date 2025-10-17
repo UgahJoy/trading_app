@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trading_app/helper_files/global_variables.dart';
@@ -14,13 +16,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
-      child: MaterialApp(
-        navigatorKey: navigatorKey,
-        scaffoldMessengerKey: scaffoldMessengerKey,
-        debugShowCheckedModeBanner: false,
-        theme: appTheme,
-        initialRoute: "/Dashboard",
-        routes: {"/Dashboard": (context) => Dashboard()},
+      child: MediaQuery(
+        data: MediaQuery.of(
+          context,
+        ).copyWith(textScaler: TextScaler.linear(Platform.isIOS ? 1 : 1.03)),
+        child: MaterialApp(
+          navigatorKey: navigatorKey,
+          scaffoldMessengerKey: scaffoldMessengerKey,
+          debugShowCheckedModeBanner: false,
+          theme: appTheme,
+          initialRoute: "/Dashboard",
+          routes: {"/Dashboard": (context) => Dashboard()},
+        ),
       ),
     );
   }

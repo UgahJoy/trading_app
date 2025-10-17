@@ -15,7 +15,7 @@ class Updates extends StatelessWidget {
       children: [
         Container(
           width: context.deviceWidth * 0.8,
-          margin: EdgeInsets.only(right: index == 0 ? 0 : 20),
+
           padding: EdgeInsets.symmetric(
             horizontal: screenPaddding,
             vertical: 20,
@@ -103,11 +103,13 @@ class UpdateIcons extends StatelessWidget {
       ),
       child: Center(
         child: Stack(
+          clipBehavior: Clip.none,
           children: [
             Image.asset(image, height: 18),
             index % 2 == 1
                 ? Positioned(
-                    right: 3,
+                    right: 1,
+                    top: -2,
                     child: Container(
                       height: 8,
                       width: 8,

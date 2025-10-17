@@ -60,6 +60,8 @@ class RiskLevelSelector extends StatelessWidget {
               children: [
                 Text(
                   title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: header.copyWith(
                     fontWeight: FontWeight.w700,
                     fontSize: 20,

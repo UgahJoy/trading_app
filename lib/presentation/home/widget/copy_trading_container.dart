@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
+import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/onboarding.dart';
+import 'package:trading_app/shared_widgets/app_InkWell.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
@@ -9,22 +12,23 @@ class CopyTradingContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        gradient: LinearGradient(
-          begin: AlignmentGeometry.centerLeft,
-          end: AlignmentGeometry.centerRight,
-          stops: [0.05, 0.6, 1.0],
-          colors: [
-            AppColors.tradingBorderGradient1,
-            AppColors.tradingBorderGradient2,
-            AppColors.tradingBorderGradient3,
-          ],
-        ),
-      ),
-      child: Padding(
+    return AppInkWell(
+      onTap: () => AppRouter.navigateTo(Onboarding()),
+      child: Container(
         padding: EdgeInsets.all(0.6),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          gradient: LinearGradient(
+            begin: AlignmentGeometry.centerLeft,
+            end: AlignmentGeometry.centerRight,
+            stops: [0.05, 0.6, 1.0],
+            colors: [
+              AppColors.tradingBorderGradient1,
+              AppColors.tradingBorderGradient2,
+              AppColors.tradingBorderGradient3,
+            ],
+          ),
+        ),
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 0),
           decoration: BoxDecoration(
@@ -53,8 +57,9 @@ class CopyTradingContainer extends StatelessWidget {
                         children: [
                           Text(
                             "Copy Trading",
-                            style: header.copyWith(
-                              fontWeight: FontWeight.w700,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: header2.copyWith(
                               fontSize: 16,
                               color: AppColors.scaffoldBgColor,
                             ),

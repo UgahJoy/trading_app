@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/dashboard/dashboard.dart';
-import 'package:trading_app/presentation/onboarding/widgets/bottom_nav.dart';
-import 'package:trading_app/presentation/onboarding/widgets/risk_levels_selectors.dart';
+import 'package:trading_app/shared_widgets/app_bar_item.dart';
+import 'package:trading_app/presentation/crypto_trading/trading_dashboard/trading_dashboard.dart';
+import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/bottom_nav.dart';
+import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/risk_levels_selectors.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 
@@ -41,17 +42,14 @@ class _RiskLevelState extends State<RiskLevel> {
     return AppScaffold(
       bottomNavigationBar: BottomNav(
         buttonText: "Proceed",
-        onTap: () => AppRouter.replaceWith(Dashboard()),
+        onTap: () => AppRouter.navigateTo(TradingDashboard()),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gap(topPadding),
 
-          Align(
-            alignment: Alignment.center,
-            child: Text("Copy trading", style: subHeader),
-          ),
+          AppBarItem(text: "Copy trading"),
           Gap(40),
           Text("What risk level are you comfortable exploring?", style: header),
           Gap(8),
