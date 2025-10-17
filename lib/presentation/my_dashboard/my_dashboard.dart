@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/my_dashboard/widget/my_dasboard_body.dart';
+import 'package:trading_app/presentation/my_dashboard/my_dasboard_body.dart';
 import 'package:trading_app/presentation/my_dashboard/widget/net_profit.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';

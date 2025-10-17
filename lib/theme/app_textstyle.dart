@@ -78,5 +78,6 @@ class AppTextstyle {
 }
 
 TextStyle header = AppTextstyle.header();
+// TextStyle header = AppTextstyle.header();
 TextStyle header2 = AppTextstyle.header2();
 TextStyle subHeader = AppTextstyle.subHeaders();

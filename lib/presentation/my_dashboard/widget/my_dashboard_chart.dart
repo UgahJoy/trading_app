@@ -12,7 +12,7 @@ class MyDashboardChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
         border: Border.all(color: AppColors.navBorder),
         color: AppColors.navGrey,
       ),

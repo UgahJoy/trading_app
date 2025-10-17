@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:trading_app/shared_widgets/app_net_work_image.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class TradeHistoryWidget extends StatelessWidget {
-  const TradeHistoryWidget({super.key});
+  final bool isTradeHistory;
+  const TradeHistoryWidget({super.key, required this.isTradeHistory});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 16),
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
           color: AppColors.updateGrey,
           child: Row(
             children: [
               Image.asset("assets/btc.png", height: 20),
               Gap(8),
-
               Expanded(
                 child: RichText(
                   maxLines: 1,
@@ -41,6 +41,7 @@ class TradeHistoryWidget extends StatelessWidget {
               Text(
                 "+3.28% ROI ",
                 style: TextStyle(
+                  fontSize: 13,
                   fontWeight: FontWeight.w500,
                   color: AppColors.chartGreen,
                 ),
@@ -49,13 +50,23 @@ class TradeHistoryWidget extends StatelessWidget {
           ),
         ),
 
-        Item(showImage: true, title: "PRO trader", value: "BTC master"),
-        Item(title: "Entry price", value: "1.9661 USDT"),
-        Item(title: "Exit price", value: "1.9728 USDT"),
-        Item(title: "PRO trader amount", value: "1009.772 USDT"),
-        Item(title: "Entry time", value: "01:22 PM"),
-        Item(title: "Exit time", value: "01:22 PM"),
-        Gap(4),
+        if (isTradeHistory) ...[
+          Item(title: "Entry price", value: "1.9661 USDT"),
+          Item(title: "Exit price", value: "1.9728 USDT"),
+          Item(title: "Copiers ", value: "120"),
+          Item(title: "Copiers amount", value: "1009.772 USDT"),
+          Item(title: "Entry time", value: "01:22 PM"),
+          Item(title: "Exit time", value: "01:22 PM"),
+          Gap(20),
+        ] else ...[
+          Item(showImage: true, title: "PRO trader", value: "BTC master"),
+          Item(title: "Entry price", value: "1.9661 USDT"),
+          Item(title: "Exit price", value: "1.9728 USDT"),
+          Item(title: "PRO trader amount", value: "1009.772 USDT"),
+          Item(title: "Entry time", value: "01:22 PM"),
+          Item(title: "Exit time", value: "01:22 PM"),
+          Gap(20),
+        ],
       ],
     );
   }
@@ -82,18 +93,21 @@ class Item extends StatelessWidget {
           if (showImage) ...[
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadiusGeometry.circular(100),
-                  child: Image.asset(
-                    "assets/pro_trader_image.png",
-                    height: 25,
-                    width: 18,
+                Container(
+                  height: 21,
+                  width: 18,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(width: 2, color: AppColors.primaryColor),
                   ),
+
+                  //
+                  child: AppNetWorkImage(imageUrl: ""),
                 ),
                 Positioned(
-                  bottom: 6,
-                  right: 2,
-                  child: Image.asset("assets/pro_verified.png", height: 6),
+                  bottom: 0,
+                  right: -1,
+                  child: Image.asset("assets/pro_verified.png", height: 10),
                 ),
               ],
             ),

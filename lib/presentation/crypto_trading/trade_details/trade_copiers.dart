@@ -5,18 +5,17 @@ import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/all_traders_details_datum.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/shared_widgets/all_traders_details.dart';
-import 'package:trading_app/shared_widgets/app_border_conatiner_2.dart';
 import 'package:trading_app/shared_widgets/app_textfield.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class MyDashboardTraders extends StatefulWidget {
-  const MyDashboardTraders({super.key});
+class TradeCopiers extends StatefulWidget {
+  const TradeCopiers({super.key});
 
   @override
-  State<MyDashboardTraders> createState() => _MyDashboardTradersState();
+  State<TradeCopiers> createState() => _TradeCopiersState();
 }
 
-class _MyDashboardTradersState extends State<MyDashboardTraders> {
+class _TradeCopiersState extends State<TradeCopiers> {
   List<AllTradersDetailsDaTum> traders = [
     AllTradersDetailsDaTum(
       bgColor: AppColors.proTradersBlue1,
@@ -44,9 +43,16 @@ class _MyDashboardTradersState extends State<MyDashboardTraders> {
           ),
         )
         .toList();
-    return AppBorderContainer2(
-      horizontalPadding: 0,
-      verticalPadding: 0,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+        border: Border(
+          bottom: BorderSide(color: AppColors.navBorder),
+          right: BorderSide(color: AppColors.navBorder),
+          left: BorderSide(color: AppColors.navBorder),
+        ),
+        color: AppColors.navGrey,
+      ),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +60,7 @@ class _MyDashboardTradersState extends State<MyDashboardTraders> {
             Gap(16),
 
             AppTextfield(
-              hintText: "Search for PRO traders",
+              hintText: "Search for copiers",
               onChanged: (val) {
                 setState(() {});
               },
@@ -63,10 +69,12 @@ class _MyDashboardTradersState extends State<MyDashboardTraders> {
             ),
             Gap(20),
             ListView.builder(
+              padding: EdgeInsets.only(left: 0),
               itemCount: searchResult.length,
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => AllTradersDetails(
+                showTag: false,
                 bgColor: searchResult[index].bgColor,
                 name: searchResult[index].name,
                 color: searchResult[index].color,

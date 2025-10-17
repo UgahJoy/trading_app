@@ -34,6 +34,7 @@ class NetProfit extends StatelessWidget {
               Column(
                 children: [
                   Text("Today’s PNL"),
+                  Gap(12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

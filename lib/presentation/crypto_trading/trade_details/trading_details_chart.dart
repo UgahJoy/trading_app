@@ -33,7 +33,7 @@ class TradingDetailsChart extends StatelessWidget {
               ],
             ),
           ),
-          Gap(8),
+          Gap(4),
           AppBorderContainer(
             horizontalPadding: 0,
             borderRadius: 0,
@@ -47,17 +47,11 @@ class TradingDetailsChart extends StatelessWidget {
               ],
             ),
           ),
-          Gap(8),
+          Gap(4),
           AllocationItem(),
-          Gap(8),
+          Gap(4),
           HoldingPeriodItem(),
           Gap(bottomPaddding),
-          // bottomNavigationBar: BottomNav(
-          //   buttonText: "Copy trade",
-          //   onTap: () {
-          //     AppRouter.pushDialog(RiskBottomSheet());
-          //   },
-          // ),
         ],
       ),
     );

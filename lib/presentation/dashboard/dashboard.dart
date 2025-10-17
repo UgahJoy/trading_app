@@ -2,11 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:trading_app/presentation/crypto_trading/trading_dashboard/trading_dashboard.dart';
 import 'package:trading_app/presentation/dashboard/widget/app_nav_bar.dart';
 import 'package:trading_app/presentation/dashboard/widget/dashboard_app_bar.dart';
 import 'package:trading_app/presentation/home/home.dart';
-import 'package:trading_app/presentation/my_dashboard/my_dashboard.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
 import 'package:trading_app/theme/colors.dart';
 
@@ -34,7 +32,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
               _pageController.animateToPage(
                 val,
                 duration: const Duration(milliseconds: 300),
-                curve: Curves.easeOut,
+                curve: Curves.easeInOutCubicEmphasized,
               );
             }
           },
@@ -67,7 +65,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
                     });
                   },
                   controller: _pageController,
-                  children: [Home(), MyDashboard(), TradingDashboard()],
+                  children: [Home()],
                 ),
               ),
             ],

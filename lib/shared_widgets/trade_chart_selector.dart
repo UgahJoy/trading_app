@@ -25,7 +25,7 @@ class TradeChartsSelector extends StatelessWidget {
         children: [
           Gap(14),
           Padding(
-            padding: const EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.only(bottom: 4),
             child: Text(
               text,
               maxLines: 1,

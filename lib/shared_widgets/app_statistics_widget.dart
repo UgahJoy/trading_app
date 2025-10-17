@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/all_traders_details_datum.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/helper_files/extensions.dart';
+import 'package:trading_app/shared_widgets/app_border_conatiner_2.dart';
 import 'package:trading_app/shared_widgets/filter_widget.dart';
 import 'package:trading_app/presentation/my_dashboard/widget/statictics_item.dart';
 import 'package:trading_app/presentation/my_dashboard/widget/trading_pair_item.dart';
@@ -15,7 +16,7 @@ class AppStatisticsWidget extends StatelessWidget {
   const AppStatisticsWidget({
     super.key,
     required this.tradingPairItem,
-    this.bottomBorderRadius = 24,
+    this.bottomBorderRadius = 16,
   });
 
   @override
@@ -23,17 +24,10 @@ class AppStatisticsWidget extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(bottomPaddding),
-              ),
-              border: Border(
-                right: BorderSide(color: AppColors.navBorder),
-                left: BorderSide(color: AppColors.navBorder),
-              ),
-              color: AppColors.navGrey,
-            ),
+          AppBorderContainer2(
+            horizontalPadding: 0,
+            verticalPadding: 0,
+
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

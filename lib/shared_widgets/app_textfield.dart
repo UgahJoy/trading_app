@@ -4,12 +4,13 @@ import 'package:trading_app/theme/colors.dart';
 
 class AppTextfield extends StatefulWidget {
   final TextEditingController controller;
-
+  final String hintText;
   final Function()? onTap;
   final Function(String)? onChanged;
   const AppTextfield({
     super.key,
     this.onTap,
+    required this.hintText,
     this.onChanged,
     required this.controller,
   });
@@ -33,7 +34,7 @@ class _AppTextfieldState extends State<AppTextfield> {
 
           controller: widget.controller,
           decoration: InputDecoration(
-            hintText: "Search for PRO traders",
+            hintText: widget.hintText,
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 15,
