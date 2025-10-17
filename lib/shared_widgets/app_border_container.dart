@@ -4,12 +4,21 @@ import 'package:trading_app/theme/colors.dart';
 class AppBorderContainer extends StatelessWidget {
   final Widget child;
   final double? borderRadius;
-  const AppBorderContainer({super.key, required this.child, this.borderRadius});
+  final double? horizontalPadding;
+  const AppBorderContainer({
+    super.key,
+    required this.child,
+    this.borderRadius,
+    this.horizontalPadding,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding ?? 16,
+        vertical: 16,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius ?? 16),
         color: AppColors.navGrey,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trading_app/presentation/my_dashboard/widget/my_dashboard_trade_history.dart';
+import 'package:gap/gap.dart';
+import 'package:trading_app/helper_files/extensions.dart';
+import 'package:trading_app/shared_widgets/trade_history_widget.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class MyDashboardCurrentTrades extends StatelessWidget {
@@ -17,7 +19,16 @@ class MyDashboardCurrentTrades extends StatelessWidget {
         ),
         color: AppColors.navGrey,
       ),
-      child: MyDashboardTradeHistory(),
+      child: Column(
+        children: [
+          ListView.builder(
+            itemCount: 2,
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) => TradeHistoryWidget(),
+          ),
+        ],
+      ),
     );
   }
 }

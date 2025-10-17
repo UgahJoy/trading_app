@@ -4,12 +4,12 @@ import 'package:trading_app/shared_widgets/app_Inkwell.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class ChartsSelector extends StatelessWidget {
+class TradeChartsSelector extends StatelessWidget {
   final String text;
   final int index;
   final int currentIndex;
   final Function() onTap;
-  const ChartsSelector({
+  const TradeChartsSelector({
     super.key,
     required this.onTap,
     required this.currentIndex,

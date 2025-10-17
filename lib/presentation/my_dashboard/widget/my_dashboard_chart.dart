@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/filter_widget.dart';
-import 'package:trading_app/presentation/my_dashboard/widget/my_dashboard_trade_history.dart';
+import 'package:trading_app/shared_widgets/filter_widget.dart';
+import 'package:trading_app/presentation/my_dashboard/widget/my_dashboard_chart_trade_history.dart';
 import 'package:trading_app/shared_widgets/app_chart_widget.dart';
 import 'package:trading_app/theme/colors.dart';
 
@@ -35,7 +35,7 @@ class MyDashboardChart extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: FilterWidget(text: "Trading History"),
           ),
-          MyDashboardTradeHistory(),
+          MyChartDashboardTradeHistory(),
         ],
       ),
     );

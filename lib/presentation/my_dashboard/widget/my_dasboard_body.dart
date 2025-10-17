@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/extensions.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/chart_selector.dart';
+import 'package:trading_app/shared_widgets/trade_chart_selector.dart';
 import 'package:trading_app/presentation/my_dashboard/widget/my_dashboard_chart.dart';
 import 'package:trading_app/presentation/my_dashboard/widget/my_dashboard_current_trades.dart';
 import 'package:trading_app/presentation/my_dashboard/widget/my_dashboard_stats.dart';
@@ -44,7 +44,7 @@ class _MyDashboardBodyState extends State<MyDashboardBody> {
           child: Row(
             children: [
               Expanded(
-                child: ChartsSelector(
+                child: TradeChartsSelector(
                   text: "Chart",
                   currentIndex: currentIndex,
                   index: 0,
@@ -54,7 +54,7 @@ class _MyDashboardBodyState extends State<MyDashboardBody> {
                 ),
               ),
               Expanded(
-                child: ChartsSelector(
+                child: TradeChartsSelector(
                   text: "Current trades",
                   currentIndex: currentIndex,
                   index: 1,
@@ -64,7 +64,7 @@ class _MyDashboardBodyState extends State<MyDashboardBody> {
                 ),
               ),
               Expanded(
-                child: ChartsSelector(
+                child: TradeChartsSelector(
                   text: "Stats",
                   currentIndex: currentIndex,
                   index: 2,
@@ -74,7 +74,7 @@ class _MyDashboardBodyState extends State<MyDashboardBody> {
                 ),
               ),
               Expanded(
-                child: ChartsSelector(
+                child: TradeChartsSelector(
                   text: "My traders",
                   currentIndex: currentIndex,
                   index: 3,

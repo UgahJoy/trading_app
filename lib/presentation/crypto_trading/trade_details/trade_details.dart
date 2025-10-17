@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/bottom_nav.dart';
+import 'package:trading_app/presentation/crypto_trading/trading_dashboard/trading_details_chart.dart';
+import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/trading_statistics.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/trading_details.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/allocation_item.dart';
+import 'package:trading_app/shared_widgets/trade_history_widget.dart';
+import 'package:trading_app/shared_widgets/trade_section_selector.dart';
 import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/certified_pros.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/holding_period_item.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/risk_bottom_sheet.dart';
 import 'package:trading_app/presentation/crypto_trading/trading_dashboard/widgets/traders_name_widget.dart';
 import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/trends.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
@@ -24,16 +22,22 @@ class TradeDetails extends ConsumerStatefulWidget {
 
 class _TradeDetailsState extends ConsumerState<TradeDetails> {
   int currentIndex = 0;
+  final _pageController = PageController();
+
+  void _onPageChange(int index) {
+    setState(() {
+      currentIndex = index;
+      _pageController.animateToPage(
+        index,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOutCubicEmphasized,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      bottomNavigationBar: BottomNav(
-        buttonText: "Copy trade",
-        onTap: () {
-          AppRouter.pushDialog(RiskBottomSheet());
-        },
-      ),
       body: Column(
         children: [
           Gap(topPadding),
@@ -55,27 +59,25 @@ class _TradeDetailsState extends ConsumerState<TradeDetails> {
             ],
           ),
           Gap(12),
+          CertifiedPros(),
+          Gap(4),
+          TradeSectionSelector(
+            currentIndex: currentIndex,
+            onChanged: (val) {
+              _onPageChange(val);
+            },
+          ),
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  CertifiedPros(),
-                  Gap(4),
-                  TradingDetailsChart(
-                    currentIndex: currentIndex,
-                    onChanged: (val) {
-                      currentIndex = val;
-                      setState(() {});
-                    },
-                  ),
-                  Gap(8),
-                  AllocationItem(),
-
-                  Gap(8),
-                  HoldingPeriodItem(),
-                  Gap(bottomPaddding),
-                ],
-              ),
+            child: PageView(
+              onPageChanged: (value) {
+                setState(() {});
+              },
+              controller: _pageController,
+              children: [
+                TradingDetailsChart(),
+                TradeingStatistics(),
+                TradeHistoryWidget(),
+              ],
             ),
           ),
         ],

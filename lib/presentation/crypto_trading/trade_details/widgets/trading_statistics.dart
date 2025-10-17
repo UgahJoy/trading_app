@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:trading_app/shared_widgets/app_statistics_widget.dart';
 
-class MyDashboardStats extends StatelessWidget {
-  MyDashboardStats({super.key});
+class TradeingStatistics extends StatelessWidget {
+  TradeingStatistics({super.key});
 
   List<String> tradingPairItem = [
     "BTCUSDT",
@@ -22,6 +22,9 @@ class MyDashboardStats extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return AppStatisticsWidget(tradingPairItem: tradingPairItem);
+    return AppStatisticsWidget(
+      bottomBorderRadius: 0,
+      tradingPairItem: tradingPairItem,
+    );
   }
 }

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/chart_selector.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/filter_widget.dart';
-import 'package:trading_app/shared_widgets/app_chart_widget.dart';
+import 'package:trading_app/shared_widgets/trade_chart_selector.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class TradingDetailsChart extends StatelessWidget {
+class TradeSectionSelector extends StatelessWidget {
   final int currentIndex;
   final Function(int) onChanged;
-  const TradingDetailsChart({
+  const TradeSectionSelector({
     super.key,
     required this.currentIndex,
     required this.onChanged,
@@ -21,13 +17,17 @@ class TradingDetailsChart extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.navBorder),
+            border: Border(
+              left: BorderSide(color: AppColors.navBorder),
+              right: BorderSide(color: AppColors.navBorder),
+              top: BorderSide(color: AppColors.navBorder),
+            ),
             color: AppColors.scaffoldBgColor,
           ),
           child: Row(
             children: [
               Expanded(
-                child: ChartsSelector(
+                child: TradeChartsSelector(
                   text: "Chart",
                   currentIndex: currentIndex,
                   index: 0,
@@ -37,7 +37,7 @@ class TradingDetailsChart extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ChartsSelector(
+                child: TradeChartsSelector(
                   text: "Stats",
                   currentIndex: currentIndex,
                   index: 1,
@@ -47,7 +47,7 @@ class TradingDetailsChart extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ChartsSelector(
+                child: TradeChartsSelector(
                   text: "All Trades",
                   currentIndex: currentIndex,
                   index: 2,
@@ -57,7 +57,7 @@ class TradingDetailsChart extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ChartsSelector(
+                child: TradeChartsSelector(
                   text: "Copiers",
                   currentIndex: currentIndex,
                   index: 3,
@@ -66,24 +66,6 @@ class TradingDetailsChart extends StatelessWidget {
                   },
                 ),
               ),
-            ],
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: AppColors.navBorder),
-            color: AppColors.navGrey,
-          ),
-          child: Column(
-            children: [
-              Gap(20),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenPaddding),
-                child: FilterWidget(text: "RIO"),
-              ),
-              Gap(12),
-              AppChartItem(),
-              Gap(16),
             ],
           ),
         ),

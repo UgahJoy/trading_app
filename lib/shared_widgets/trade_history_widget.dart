@@ -1,29 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:trading_app/helper_files/extensions.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class MyDashboardTradeHistory extends StatelessWidget {
-  const MyDashboardTradeHistory({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListView.builder(
-          itemCount: 2,
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemBuilder: (context, index) => DashboardTradeHistoryItems(),
-        ),
-        Gap(context.deviceHeight * 0.06),
-      ],
-    );
-  }
-}
-
-class DashboardTradeHistoryItems extends StatelessWidget {
-  const DashboardTradeHistoryItems({super.key});
+class TradeHistoryWidget extends StatelessWidget {
+  const TradeHistoryWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

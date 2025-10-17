@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/filter_widget.dart';
+import 'package:trading_app/shared_widgets/filter_widget.dart';
 import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/holding_period_graph.dart';
 
 import 'package:trading_app/theme/colors.dart';

@@ -71,7 +71,7 @@ class _TradingDashboardState extends ConsumerState<TradingDashboard> {
               Expanded(
                 child: DashboardOptions(
                   caption: "Apply Now",
-                  // stops: [0.0, 0.1, 1.0],
+
                   colors: [
                     AppColors.tradingDashboardGradient1,
                     AppColors.tradingDashboardGradient2,
