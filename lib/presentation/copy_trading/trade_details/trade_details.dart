@@ -84,7 +84,7 @@ class _TradeDetailsState extends ConsumerState<TradeDetails> {
                 TradingDetailsChart(),
                 TradeingStatistics(),
                 AllTradeHistory(model: widget.model),
-                TradeCopiers(),
+                TradeCopiers(model: widget.model),
               ],
             ),
           ),

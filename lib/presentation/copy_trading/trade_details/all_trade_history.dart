@@ -33,7 +33,9 @@ class _AllTradeHistoryState extends ConsumerState<AllTradeHistory> {
 
   @override
   void initState() {
-    isBusy = ref.read(appState).allTradeHistory.isEmpty;
+    isBusy =
+        (ref.read(appState).allTradeHistory[widget.model.leadPortfolioId] ?? [])
+            .isEmpty;
 
     if (isBusy) {
       ref
@@ -127,7 +129,10 @@ class TransactionHistoryView extends StatelessWidget {
     return isBusy
         ? Center(child: CircularProgressIndicator())
         : historyList.isEmpty
-        ? Center(child: Text("No Trade History Found"))
+        ? SizedBox(
+            height: context.deviceHeight * 0.4,
+            child: Center(child: Text("No Trade History Found")),
+          )
         : CheckMarkIndicator(
             onRefresh: () async {},
             child: ListView.builder(

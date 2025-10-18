@@ -1,45 +1,56 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:trading_app/helper_files/all_traders_details_datum.dart';
 import 'package:trading_app/helper_files/constants.dart';
+import 'package:trading_app/helper_files/helper_function.dart';
+import 'package:trading_app/models/all_copy_traders_model.dart';
+import 'package:trading_app/models/pro_traders_model.dart';
+import 'package:trading_app/repositories/global_repository.dart';
+import 'package:trading_app/shared_state/app_state.dart';
 import 'package:trading_app/shared_widgets/all_traders_details.dart';
 import 'package:trading_app/shared_widgets/app_border_conatiner_2.dart';
 import 'package:trading_app/shared_widgets/app_textfield.dart';
-import 'package:trading_app/theme/colors.dart';
 
-class MyDashboardTraders extends StatefulWidget {
-  const MyDashboardTraders({super.key});
+class MyDashboardTraders extends ConsumerStatefulWidget {
+  final ProTradersModel? model;
+  const MyDashboardTraders({super.key, this.model});
 
   @override
-  State<MyDashboardTraders> createState() => _MyDashboardTradersState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _MyDashboardTradersState();
 }
 
-class _MyDashboardTradersState extends State<MyDashboardTraders> {
-  List<AllTradersDetailsDaTum> traders = [
-    AllTradersDetailsDaTum(
-      bgColor: AppColors.proTradersBlue1,
-      color: AppColors.proTradersBlue,
-      name: "Jaykay Kayode",
-    ),
-    AllTradersDetailsDaTum(
-      bgColor: AppColors.proTradersYellow,
-      name: "Okobi Laura",
-      color: AppColors.proTradersYellow,
-    ),
-    AllTradersDetailsDaTum(
-      bgColor: AppColors.indicatorBlue,
-      name: "Tosin Lasisi",
-      color: AppColors.indicatorBlue,
-    ),
-  ];
+class _MyDashboardTradersState extends ConsumerState<MyDashboardTraders> {
+  bool isBusy = true;
+
+  @override
+  void initState() {
+    isBusy = ref.read(appState).allCopyTraders.isEmpty;
+    if (isBusy) {
+      ref
+          .read(globalRepository)
+          .fectAllCopyTraders(widget.model?.leadPortfolioId ?? "")
+          .then((val) {
+            isBusy = false;
+            if (mounted) {
+              setState(() {});
+            }
+          });
+    }
+    super.initState();
+  }
+
   final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var searchResult = traders
+    final List<AllCopyTradersModel> allTradersList =
+        ref.watch(appState).allCopyTraders[widget.model?.leadPortfolioId] ?? [];
+
+    var searchResult = allTradersList
         .where(
-          (e) => e.name.toLowerCase().contains(
+          (e) => e.nickname.toString().toLowerCase().contains(
             searchController.text.toLowerCase(),
           ),
         )
@@ -67,9 +78,9 @@ class _MyDashboardTradersState extends State<MyDashboardTraders> {
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => AllTradersDetails(
-                bgColor: searchResult[index].bgColor,
-                name: searchResult[index].name,
-                color: searchResult[index].color,
+                bgColor: generateRandomColor(index),
+                model: searchResult[index],
+                color: generateRandomColor(index),
                 lastItem: (index < searchResult.length - 1),
               ),
             ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:trading_app/helper_files/helper_function.dart';
+import 'package:trading_app/models/all_copy_traders_model.dart';
 import 'package:trading_app/shared_widgets/name_abbrevation_widget.dart';
 import 'package:trading_app/shared_widgets/total_volume_and_profit_widget.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class AllTradersDetails extends StatelessWidget {
-  final String name;
+  final AllCopyTradersModel model;
   final Color color;
   final Color bgColor;
   final bool showCopy;
@@ -16,14 +18,13 @@ class AllTradersDetails extends StatelessWidget {
     required this.color,
     this.showTag = true,
     this.showCopy = true,
-    required this.name,
+    required this.model,
     this.lastItem = false,
     required this.bgColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    String secondLetter = name.split(" ")[1];
     return Column(
       children: [
         Row(
@@ -34,7 +35,7 @@ class AllTradersDetails extends StatelessWidget {
               child: NameAbbrevationWidget(
                 showTag: false,
                 showCopy: showCopy,
-                name: (name[0] + secondLetter[0]).toUpperCase(),
+                name: cleanInitials(model.nickname ?? ""),
                 borderColor: color,
                 bgColor: bgColor.withValues(alpha: 0.14),
               ),
@@ -46,7 +47,7 @@ class AllTradersDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    model.nickname ?? "",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 14),
@@ -69,7 +70,7 @@ class AllTradersDetails extends StatelessWidget {
         ),
 
         Gap(12),
-        TotalVolumeAndProfitWidget(),
+        TotalVolumeAndProfitWidget(model: model),
 
         if (lastItem) ...[
           Container(

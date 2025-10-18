@@ -32,7 +32,7 @@ class NameAbbrevationWidget extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              name,
+              name.toUpperCase(),
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,

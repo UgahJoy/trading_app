@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trading_app/models/all_copy_traders_model.dart';
 import 'package:trading_app/models/pro_traders_model.dart';
 import 'package:trading_app/models/trade_history_mode.dart';
 
@@ -18,6 +19,15 @@ class AppState with ChangeNotifier {
 
   void updateTradeHistory(String portfolioId, List<TradeHistoryModel> history) {
     allTradeHistory[portfolioId] = history;
+    notifyListeners();
+  }
+
+  Map<String, List<AllCopyTradersModel>> allCopyTraders = {};
+  void updateAllCopyTraders(
+    String portfolioId,
+    List<AllCopyTradersModel> allTraders,
+  ) {
+    allCopyTraders[portfolioId] = allTraders;
     notifyListeners();
   }
 }
