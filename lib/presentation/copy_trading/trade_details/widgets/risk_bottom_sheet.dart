@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/risk_bottom_sheet_2.dart';
+import 'package:trading_app/presentation/copy_trading/trade_details/widgets/risk_bottom_sheet_2.dart';
 import 'package:trading_app/shared_widgets/app_Inkwell.dart';
 import 'package:trading_app/shared_widgets/app_bottom_sheet_cancel_button.dart';
 import 'package:trading_app/shared_widgets/app_button.dart';

@@ -44,8 +44,8 @@ class NameAbbrevationWidget extends StatelessWidget {
 
         if (showTag) ...[
           Positioned(
-            bottom: -10,
-            right: 8,
+            bottom: -8,
+            right: 4,
             child: Image.asset("assets/tag.png", height: showCopy ? 19 : 25),
           ),
         ],

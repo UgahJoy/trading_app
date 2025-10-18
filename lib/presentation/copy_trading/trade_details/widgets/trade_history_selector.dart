@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trading_app/presentation/crypto_trading/trade_details/widgets/trade_history_selector_item.dart';
+import 'package:trading_app/presentation/copy_trading/trade_details/widgets/trade_history_selector_item.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class TradeHistorySelector extends StatelessWidget {

@@ -6,10 +6,12 @@ class AppBorderContainer2 extends StatelessWidget {
   final double? borderRadius;
   final double? horizontalPadding;
   final double? verticalPadding;
+  final double? bottomBorderRadius;
   const AppBorderContainer2({
     super.key,
     required this.child,
     this.borderRadius,
+    this.bottomBorderRadius,
     this.horizontalPadding,
     this.verticalPadding,
   });
@@ -22,7 +24,9 @@ class AppBorderContainer2 extends StatelessWidget {
         vertical: verticalPadding ?? 16,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(bottomBorderRadius ?? 16),
+        ),
         border: Border(
           left: BorderSide(color: AppColors.navBorder),
           right: BorderSide(color: AppColors.navBorder),

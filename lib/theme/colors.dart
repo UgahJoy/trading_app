@@ -39,6 +39,7 @@ class AppColors {
   static const proTradersYellow = Color(0xFFFDB022);
   static const proTradersGreen = Color(0xFF47CD89);
   static const chartGreen = Color(0xFF17B26A);
+  static const proChatGreen = Color(0xFF58BD7D);
   static const lineChartGreen1 = Color(0xFF45B26B);
   static const generalAppLineChartGreen = Color(0xFF3EF6A9);
   static const generalAppLineChartGreen2 = Color(0xFF3EF67D);
@@ -49,7 +50,7 @@ class AppColors {
 
 #.   #.   2A2F36
 #.   #.  . #. # DD568D.    #.   20252B
-##.  .    #3E32C1
+##.  .    #3E32C1.    #.  
 #\.  
    */
 }

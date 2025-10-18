@@ -3,9 +3,9 @@ import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
-import 'package:trading_app/presentation/crypto_trading/trading_dashboard/trading_dashboard.dart';
-import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/bottom_nav.dart';
-import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/risk_levels_selectors.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_picker/copy_trading_dashboard_picker.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/bottom_nav.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/risk_levels_selectors.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 
@@ -42,7 +42,7 @@ class _RiskLevelState extends State<RiskLevel> {
     return AppScaffold(
       bottomNavigationBar: BottomNav(
         buttonText: "Proceed",
-        onTap: () => AppRouter.navigateTo(TradingDashboard()),
+        onTap: () => AppRouter.navigateTo(CopyTradeDashBoardPicker()),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/risk_level.dart';
-import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/bottom_nav.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/risk_level.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/bottom_nav.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
-import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/widgets/onboarding_body.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/onboarding_body.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
 
 class Onboarding extends StatefulWidget {

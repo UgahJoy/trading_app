@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_picker/copy_trading_dashboard_picker.dart';
 import 'package:trading_app/presentation/dashboard/widget/app_nav_bar.dart';
 import 'package:trading_app/presentation/dashboard/widget/dashboard_app_bar.dart';
 import 'package:trading_app/presentation/home/home.dart';
@@ -65,7 +66,7 @@ class _DashboardState extends ConsumerState<Dashboard> {
                     });
                   },
                   controller: _pageController,
-                  children: [Home()],
+                  children: [Home(), CopyTradeDashBoardPicker()],
                 ),
               ),
             ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/crypto_trading/crypto_trading_onboarding/onboarding.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/onboarding.dart';
 import 'package:trading_app/shared_widgets/app_InkWell.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
