@@ -10,6 +10,7 @@ import 'package:trading_app/shared_state/app_state.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_picker/widgets/dashboard_options.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_picker/widgets/pro_traders.dart';
+import 'package:trading_app/shared_widgets/app_loader.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
 import 'package:trading_app/shared_widgets/check_mark_indicator.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
@@ -98,7 +99,7 @@ class _CopyTradeDashBoardPickerState
           Gap(12),
           Expanded(
             child: isBusy
-                ? Center(child: CircularProgressIndicator())
+                ? AppLoader()
                 : CheckMarkIndicator(
                     onRefresh: () async {
                       await ref.watch(globalRepository).fetchProTraders();

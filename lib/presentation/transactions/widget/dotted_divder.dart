@@ -10,7 +10,7 @@ class DottedDivder extends StatelessWidget {
     return DottedBorder(
       options: CustomPathDottedBorderOptions(
         padding: const EdgeInsets.all(8),
-        color: AppColors.primaryColor.withValues(alpha: 0.07),
+        color: AppColors.primaryColor.withValues(alpha: 0.03),
         strokeWidth: 0.2,
         dashPattern: [10, 5],
         customPath: (size) => Path()

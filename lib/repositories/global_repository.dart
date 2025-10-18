@@ -19,8 +19,8 @@ class GlobalRepository {
         ).postRequst({
           "pageNumber": 1,
           "pageSize": 100,
-          "timeRange": "7D",
-          "dataType": "RIO",
+          "timeRange": "30D",
+          "dataType": "ROI",
           "favoriteOnly": false,
           "hideFull": false,
           "order": "DESC",
@@ -75,9 +75,3 @@ class GlobalRepository {
     ref.read(appState).updateAllCopyTraders(portfolioId, newTradersData);
   }
 }
-
-//AllCopyTradersModel
-
-
-
-  //

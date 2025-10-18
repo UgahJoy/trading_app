@@ -29,18 +29,18 @@ class _SuccessPageState extends State<SuccessPage> {
         children: [
           Align(
             alignment: Alignment.center,
-            child: Image.asset("assets/sucess.png", height: 89),
+            child: Image.asset("assets/sucess.png", height: 78),
           ),
           Gap(context.deviceHeight * 0.04),
           Text(
             "Trade copied successfully",
-            style: header2.copyWith(fontSize: 16),
+            style: header2.copyWith(fontSize: 14),
           ),
-          Gap(8),
+          Gap(6),
           Text(
             textAlign: TextAlign.center,
             "You have successfully copied BTC\nMaster’s trade.",
-            style: TextStyle(fontSize: 15, color: AppColors.iconGrey),
+            style: TextStyle(fontSize: 12, color: AppColors.iconGrey),
           ),
         ],
       ),

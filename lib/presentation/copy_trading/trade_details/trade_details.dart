@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/models/pro_traders_model.dart';
 import 'package:trading_app/presentation/copy_trading/trade_details/all_trade_history.dart';
 import 'package:trading_app/presentation/copy_trading/trade_details/trade_copiers.dart';
 import 'package:trading_app/presentation/copy_trading/trade_details/trading_details_chart.dart';
+import 'package:trading_app/presentation/copy_trading/trade_details/widgets/disclaimer_bottom_sheet.dart';
 import 'package:trading_app/presentation/copy_trading/trade_details/widgets/trading_statistics.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
 import 'package:trading_app/shared_widgets/bottom_nav.dart';
@@ -43,7 +45,12 @@ class _TradeDetailsState extends ConsumerState<TradeDetails> {
   Widget build(BuildContext context) {
     return AppScaffold(
       bottomNavigationBar: currentIndex == 0
-          ? BottomNav(buttonText: "Copy trade", onTap: () {})
+          ? BottomNav(
+              buttonText: "Copy trade",
+              onTap: () {
+                AppRouter.pushDialog(DisclamerBottomSheet());
+              },
+            )
           : SizedBox(),
       body: Column(
         children: [

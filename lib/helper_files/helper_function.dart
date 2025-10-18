@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:trading_app/helper_files/constants.dart';
@@ -59,7 +61,7 @@ Color getPnLColor(double value, {bool isChart = false, Color? successColor}) {
 
 String getPnLValue(double value) {
   if (value <= 0) {
-    return "-\$${formatNumbers(value, formateForm: "#,##0.00")}";
+    return "-\$${(formatNumbers(value * -1, formateForm: "#,##0.00"))}";
   }
   return "+\$${formatNumbers(value, formateForm: "#,##0.00")}";
 }
@@ -92,4 +94,19 @@ double getMaxValue(List<num> items) {
   }
 
   return max;
+}
+
+String formatNumberWithCommas(String number) {
+  if (number.length <= 3) return number;
+
+  String result = '';
+  int counter = 0;
+  for (int i = number.length - 1; i >= 0; i--) {
+    result = number[i] + result;
+    counter++;
+    if (counter % 3 == 0 && i != 0) {
+      result = ',' + result;
+    }
+  }
+  return result;
 }

@@ -57,16 +57,3 @@ class TradingDetailsChart extends StatelessWidget {
     );
   }
 }
-
-
-/*
-
-
-
-      
-
- 
-            
-
-                  Gap(8),
-            ,*/

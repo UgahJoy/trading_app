@@ -2,21 +2,22 @@ import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:trading_app/helper_files/app_router.dart';
-import 'package:trading_app/presentation/home/widget/trade_dialogue.dart';
 import 'package:trading_app/shared_widgets/app_InkWell.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class AppNavBar extends StatelessWidget {
   final int currentIndex;
+  final AnimateIconController menuController;
   final Function(int) onPageChanged;
-  AppNavBar({
+  final Function(bool) menuStateChanged;
+  const AppNavBar({
     super.key,
     required this.currentIndex,
+    required this.menuController,
     required this.onPageChanged,
+    required this.menuStateChanged,
   });
 
-  final AnimateIconController controller = AnimateIconController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,19 +71,14 @@ class AppNavBar extends StatelessWidget {
                         child: AnimateIcons(
                           startIcon: IconsaxPlusLinear.category,
                           endIcon: Icons.clear,
-
-                          controller: controller,
-
+                          controller: menuController,
                           size: 24.0,
                           onStartIconPress: () {
-                            AppRouter.pushDialog(TradeDialogue()).then((_) {
-                              controller.animateToStart();
-                            });
-
+                            menuStateChanged(true);
                             return true;
                           },
                           onEndIconPress: () {
-                            Navigator.pop(context);
+                            menuStateChanged(false);
                             return true;
                           },
                           duration: Duration(milliseconds: 500),

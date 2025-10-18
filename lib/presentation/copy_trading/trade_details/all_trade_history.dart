@@ -8,6 +8,8 @@ import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_pic
 import 'package:trading_app/presentation/copy_trading/trade_details/widgets/trade_history_selector.dart';
 import 'package:trading_app/repositories/global_repository.dart';
 import 'package:trading_app/shared_state/app_state.dart';
+import 'package:trading_app/shared_widgets/app_loader.dart';
+import 'package:trading_app/shared_widgets/empty_state_widget.dart';
 import 'package:trading_app/shared_widgets/app_border_conatiner_2.dart';
 import 'package:trading_app/shared_widgets/check_mark_indicator.dart';
 import 'package:trading_app/shared_widgets/filter_item.dart';
@@ -127,12 +129,9 @@ class TransactionHistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isBusy
-        ? Center(child: CircularProgressIndicator())
+        ? AppLoader()
         : historyList.isEmpty
-        ? SizedBox(
-            height: context.deviceHeight * 0.4,
-            child: Center(child: Text("No Trade History Found")),
-          )
+        ? EmptyStateWidget()
         : CheckMarkIndicator(
             onRefresh: () async {},
             child: ListView.builder(

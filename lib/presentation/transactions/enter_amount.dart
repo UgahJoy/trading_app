@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:trading_app/helper_files/app_router.dart' show AppRouter;
+import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/helper_files/extensions.dart';
 import 'package:trading_app/presentation/transactions/confrim_transaction.dart';
 import 'package:trading_app/presentation/transactions/widget/traction_app_bar.dart';
+import 'package:trading_app/shared_widgets/app_alert.dart';
 import 'package:trading_app/shared_widgets/app_button.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
+import 'package:trading_app/shared_widgets/currency_formater.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
+import 'package:flutter/services.dart';
 
 class EnterAmount extends StatefulWidget {
   const EnterAmount({super.key});
@@ -18,6 +21,20 @@ class EnterAmount extends StatefulWidget {
 }
 
 class _EnterAmountState extends State<EnterAmount> {
+  final FocusNode _focusNode = FocusNode();
+  TextEditingController amountController = TextEditingController();
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    amountController = TextEditingController(text: "100 USD");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -28,7 +45,18 @@ class _EnterAmountState extends State<EnterAmount> {
           children: [
             AppButton(
               text: "Continue",
-              onTap: () => AppRouter.navigateTo(ConfrimTransaction()),
+              onTap: () {
+                if (amountController.text.isEmpty ||
+                    amountController.text == "USD") {
+                  AppAlerts.showError("Please enter a valid amount");
+                  return;
+                }
+                AppRouter.navigateTo(
+                  ConfrimTransaction(
+                    amount: amountController.text.replaceAll("USD", ""),
+                  ),
+                );
+              },
             ),
             Gap(bottomPaddding),
           ],
@@ -36,17 +64,39 @@ class _EnterAmountState extends State<EnterAmount> {
       ),
       body: Column(
         children: [
+          Gap(topPadding),
           TractionAppBar(),
           Gap(context.deviceHeight * 0.09),
-          Text(
-            "100 USD",
-            style: header.copyWith(
-              fontSize: 40,
-              fontWeight: FontWeight.w900,
-              fontFamily: "Nexa",
+
+          SizedBox(
+            width: context.deviceWidth * 0.5,
+            child: TextFormField(
+              controller: amountController,
+
+              focusNode: _focusNode,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                CurrencyInputFormatter(),
+              ],
+              style: header.copyWith(
+                fontSize: 36,
+                fontWeight: FontWeight.w900,
+                fontFamily: "Nexa",
+                color: AppColors.primaryColor,
+              ),
+
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+              ),
             ),
           ),
-          Gap(20),
+          Gap(24),
           Container(
             padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             decoration: BoxDecoration(
@@ -54,14 +104,12 @@ class _EnterAmountState extends State<EnterAmount> {
               color: AppColors.navGrey,
               border: Border.all(color: AppColors.navBorder),
             ),
-            child: Center(
-              child: Text(
-                "Transaction fee (1%) - 1.00USD",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.primaryColor,
-                ),
+            child: Text(
+              "Transaction fee (1%) - 1.00USD",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: AppColors.primaryColor,
               ),
             ),
           ),
@@ -82,14 +130,16 @@ class _EnterAmountState extends State<EnterAmount> {
                     children: [
                       Text(
                         "USD Balance",
-                        style: TextStyle(color: AppColors.iconGrey),
+                        style: TextStyle(
+                          color: AppColors.iconGrey,
+                          fontSize: 10,
+                        ),
                       ),
 
                       Text(
                         "\$240.73",
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           color: AppColors.primaryColor,
                         ),
                         //updateGrey
@@ -99,7 +149,7 @@ class _EnterAmountState extends State<EnterAmount> {
                 ),
 
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     color: AppColors.updateGrey,

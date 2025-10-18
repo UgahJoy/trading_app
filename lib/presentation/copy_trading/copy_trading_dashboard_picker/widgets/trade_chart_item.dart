@@ -46,8 +46,7 @@ class TradeChartItem extends StatelessWidget {
                     style: TextStyle(fontSize: 12, color: AppColors.iconGrey),
                     children: [
                       TextSpan(
-                        text:
-                            "\$${formatNumbers(model.pnl, formateForm: '#,##0.00')}",
+                        text: getPnLValue((model.pnl ?? 0).toDouble()),
                         style: header.copyWith(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,

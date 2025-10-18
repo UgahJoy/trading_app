@@ -45,10 +45,11 @@ class AppColors {
   static const generalAppLineChartGreen2 = Color(0xFF3EF67D);
   static const buttonGradient1 = Color(0xFFDD568D);
   static const buttonGradient2 = Color(0xFF3E32C1);
+  static const riskBottomSheetColor = Color(0xff262932);
 
   /*
 
-#.   #.   2A2F36
+#.   #.   2A2F36.  Color()
 #.   #.  . #. # DD568D.    #.   20252B
 ##.  .    #3E32C1.    #.  
 #\.  

@@ -9,7 +9,8 @@ import 'package:trading_app/models/all_copy_traders_model.dart';
 import 'package:trading_app/models/pro_traders_model.dart';
 import 'package:trading_app/repositories/global_repository.dart';
 import 'package:trading_app/shared_state/app_state.dart';
-import 'package:trading_app/shared_state/empty_state_widget.dart';
+import 'package:trading_app/shared_widgets/app_loader.dart';
+import 'package:trading_app/shared_widgets/empty_state_widget.dart';
 import 'package:trading_app/shared_widgets/all_traders_details.dart';
 import 'package:trading_app/shared_widgets/app_border_container.dart';
 import 'package:trading_app/shared_widgets/app_textfield.dart';
@@ -77,7 +78,7 @@ class _TradeCopiersState extends ConsumerState<TradeCopiers> {
             Gap(20),
 
             isBusy
-                ? Center(child: CircularProgressIndicator())
+                ? AppLoader()
                 : searchResult.isEmpty
                 ? Center(child: EmptyStateWidget())
                 : ListView.builder(

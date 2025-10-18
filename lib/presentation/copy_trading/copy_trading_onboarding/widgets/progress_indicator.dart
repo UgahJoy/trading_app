@@ -32,7 +32,7 @@ class LinearIndicator extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              color: index == currentIndex
+              color: index <= currentIndex
                   ? AppColors.indicatorBlue
                   : AppColors.indicatorGrey,
             ),

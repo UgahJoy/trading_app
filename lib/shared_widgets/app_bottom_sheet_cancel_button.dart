@@ -11,7 +11,7 @@ class AppBottomSheetCancelButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Gap(12),
+        Gap(8),
         Align(
           alignment: AlignmentGeometry.center,
           child: Container(

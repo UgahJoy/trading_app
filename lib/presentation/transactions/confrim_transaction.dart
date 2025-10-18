@@ -5,13 +5,15 @@ import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/presentation/transactions/enter_pin.dart';
 import 'package:trading_app/presentation/transactions/widget/dotted_divder.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
+import 'package:trading_app/shared_widgets/app_border_container.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
 import 'package:trading_app/shared_widgets/bottom_nav.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class ConfrimTransaction extends StatefulWidget {
-  const ConfrimTransaction({super.key});
+  final String amount;
+  const ConfrimTransaction({super.key, required this.amount});
 
   @override
   State<ConfrimTransaction> createState() => _ConfrimTransactionState();
@@ -31,31 +33,27 @@ class _ConfrimTransactionState extends State<ConfrimTransaction> {
           AppBarItem(text: "Confirm transaction"),
 
           Gap(40),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 8,
-              vertical: screenPaddding,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: AppColors.navGrey,
-              border: Border.all(color: AppColors.navBorder),
-            ),
+          AppBorderContainer(
+            borderRadius: 8,
+            horizontalPadding: 8,
             child: Column(
               children: [
                 Image.asset("assets/us_flag.png", height: 56),
                 Gap(12),
                 Text("Copy trading amount"),
                 Gap(4),
-                Text("100 USD", style: header),
+                Text("${widget.amount} USD", style: header),
 
                 Gap(20),
                 TranxDetails(title: "PRO trader", value: "BTC master"),
-                Gap(24),
-                TranxDetails(title: "What you get", value: "99 USD"),
+                Gap(20),
+                TranxDetails(
+                  title: "What you get",
+                  value: "${widget.amount} USD",
+                ),
                 Gap(4),
                 DottedDivder(),
-                Gap(24),
+                Gap(20),
                 TranxDetails(title: "Transaction fee", value: "100 USD"),
                 //
               ],

@@ -7,10 +7,14 @@ class AppButton extends StatefulWidget {
   final Function() onTap;
   final List<Color>? color;
   final List<double>? stops;
+  final double? fontSize;
+  final Color? buttonTextColor;
   const AppButton({
     super.key,
     required this.text,
     this.color,
+    this.fontSize,
+    this.buttonTextColor,
     this.stops,
     required this.onTap,
   });
@@ -48,10 +52,9 @@ class _AppButtonState extends State<AppButton> {
           child: Text(
             widget.text,
             style: TextStyle(
-              fontSize: 14,
-              color: AppColors.primaryColor,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w400,
+              fontSize: widget.fontSize ?? 14,
+              color: widget.buttonTextColor ?? AppColors.primaryColor,
+
               height: 1.4,
             ),
           ),

@@ -6,9 +6,12 @@ import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/risk_level.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/bottom_nav.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/progress_indicator.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/onboarding_body.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
+import 'package:trading_app/theme/app_textstyle.dart';
+import 'package:trading_app/theme/colors.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -48,6 +51,17 @@ class _OnboardingState extends State<Onboarding> {
     super.dispose();
   }
 
+  void _onPageChange(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: Duration(milliseconds: 1200),
+      curve: Curves.easeOut,
+    );
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -58,8 +72,33 @@ class _OnboardingState extends State<Onboarding> {
       body: Column(
         children: [
           Gap(topPadding),
-
           AppBarItem(text: "Copy trading"),
+          Gap(40),
+
+          Row(
+            children: [
+              Expanded(
+                child: LinearIndicator(
+                  index: 0,
+                  currentIndex: currentIndex,
+                  onTap: () {
+                    _onPageChange(0);
+                  },
+                ),
+              ),
+              Gap(8),
+              Expanded(
+                child: LinearIndicator(
+                  index: 1,
+                  currentIndex: currentIndex,
+                  onTap: () {
+                    _onPageChange(1);
+                  },
+                ),
+              ),
+            ],
+          ),
+
           Expanded(
             child: PageView.builder(
               itemCount: data.length,
@@ -71,19 +110,17 @@ class _OnboardingState extends State<Onboarding> {
                 caption: data[index].caption,
                 image: data[index].image,
                 currentIndex: currentIndex,
-                onPageChanged: (index) {
-                  _pageController.animateToPage(
-                    index,
-                    duration: Duration(milliseconds: 1200),
-                    curve: Curves.easeOut,
-                  );
-                  setState(() {
-                    currentIndex = index;
-                  });
-                },
               ),
             ),
           ),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "Watch a how to video",
+              style: subHeader.copyWith(color: AppColors.indicatorBlue),
+            ),
+          ),
+          Gap(32),
         ],
       ),
     );
@@ -93,17 +130,18 @@ class _OnboardingState extends State<Onboarding> {
     if (!mounted) {
       return;
     }
-    _timer = Timer.periodic(Duration(seconds: 2), (timer) {
+    _timer = Timer.periodic(Duration(milliseconds: 2500), (timer) {
       if (currentIndex < 1) {
         currentIndex++;
       } else {
-        currentIndex = 0;
+        _timer.cancel();
       }
       _pageController.animateToPage(
         currentIndex,
-        duration: const Duration(milliseconds: 250),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.fastEaseInToSlowEaseOut,
       );
+      setState(() {});
     });
   }
 }
