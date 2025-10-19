@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
-import 'package:trading_app/helper_files/extensions.dart';
 import 'package:trading_app/models/pro_traders_model.dart';
 import 'package:trading_app/models/trade_history_mode.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_selector/widgets/copy_trade_history_widget.dart';
@@ -64,50 +62,44 @@ class _AllTradeHistoryState extends ConsumerState<AllTradeHistory> {
             .read(globalRepository)
             .fetchTradeHistory(widget.model.leadPortfolioId ?? "");
       },
-      child: SingleChildScrollView(
+      child: AppBorderContainer2(
+        verticalPadding: 0,
+        bottomBorderRadius: 0,
+        horizontalPadding: 0,
         child: Column(
           children: [
-            AppBorderContainer2(
-              verticalPadding: 0,
-              bottomBorderRadius: 0,
-              horizontalPadding: 0,
-              child: Column(
+            Row(
+              children: [
+                TradeHistorySelector(
+                  currentIndex: currentIndex,
+                  onTap: (val) {
+                    _onPageChanged(val);
+                  },
+                ),
+                Spacer(),
+                Opacity(
+                  opacity: currentIndex == 0 ? 0 : 1,
+                  child: FilterItem(),
+                ),
+              ],
+            ),
+            Expanded(
+              child: IndexedStack(
+                index: currentIndex,
                 children: [
-                  Row(
-                    children: [
-                      TradeHistorySelector(
-                        currentIndex: currentIndex,
-                        onTap: (val) {
-                          _onPageChanged(val);
-                        },
-                      ),
-                      Spacer(),
-                      Opacity(
-                        opacity: currentIndex == 0 ? 0 : 1,
-                        child: FilterItem(),
-                      ),
-                    ],
+                  TransactionHistoryView(
+                    isCurrentTrade: true,
+                    isBusy: isBusy,
+                    historyList: historyList,
                   ),
-
-                  IndexedStack(
-                    index: currentIndex,
-                    children: [
-                      TransactionHistoryView(
-                        isCurrentTrade: true,
-                        isBusy: isBusy,
-                        historyList: historyList,
-                      ),
-                      TransactionHistoryView(
-                        isBusy: isBusy,
-                        isCurrentTrade: false,
-                        historyList: historyList,
-                      ),
-                    ],
+                  TransactionHistoryView(
+                    isBusy: isBusy,
+                    isCurrentTrade: false,
+                    historyList: historyList,
                   ),
                 ],
               ),
             ),
-            Gap(context.deviceHeight * 0.04),
           ],
         ),
       ),
@@ -132,16 +124,13 @@ class TransactionHistoryView extends StatelessWidget {
         ? AppLoader()
         : historyList.isEmpty
         ? EmptyStateWidget()
-        : CheckMarkIndicator(
-            onRefresh: () async {},
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: historyList.length,
-              itemBuilder: (context, index) => CopyTradeHistoryWidget(
-                isCurrentTrade: isCurrentTrade,
-                model: historyList[index],
-              ),
+        : ListView.builder(
+            shrinkWrap: true,
+
+            itemCount: historyList.length,
+            itemBuilder: (context, index) => CopyTradeHistoryWidget(
+              isCurrentTrade: isCurrentTrade,
+              model: historyList[index],
             ),
           );
   }

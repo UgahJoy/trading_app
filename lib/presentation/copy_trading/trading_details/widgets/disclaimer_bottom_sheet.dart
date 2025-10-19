@@ -129,12 +129,7 @@ class _DisclamerBottomSheetState extends State<DisclamerBottomSheet> {
           AppButton(
             fontSize: 13,
             buttonTextColor: AppColors.primaryColor.withValues(alpha: 0.6),
-            stops: [0.0, 0.5, 1.0],
-            color: [
-              AppColors.buttonGradient1.withValues(alpha: 0.2),
-              AppColors.buttonPurple.withValues(alpha: 0.2),
-              AppColors.buttonGradient2.withValues(alpha: 0.25),
-            ],
+            isEnabled: value!,
             onTap: () {
               if (value == false) {
                 AppAlerts.showError(

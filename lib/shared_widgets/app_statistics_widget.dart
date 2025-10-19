@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/all_datums.dart';
-import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/shared_widgets/app_border_conatiner_2.dart';
 import 'package:trading_app/shared_widgets/filter_widget.dart';
 import 'package:trading_app/presentation/my_dashboard/widget/statictics_item.dart';
@@ -108,12 +107,10 @@ class AppStatisticsWidget extends StatelessWidget {
                   ),
                 ),
 
-                Gap(40),
+                Gap(20),
               ],
             ),
           ),
-
-          Gap(bottomPaddding),
         ],
       ),
     );

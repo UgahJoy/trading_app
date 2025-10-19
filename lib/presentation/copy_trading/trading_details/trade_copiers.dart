@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/helper_files/helper_function.dart';
 import 'package:trading_app/models/all_copy_traders_model.dart';
 import 'package:trading_app/models/pro_traders_model.dart';
@@ -59,10 +58,10 @@ class _TradeCopiersState extends ConsumerState<TradeCopiers> {
         )
         .toList();
 
-    return SingleChildScrollView(
-      child: AppBorderContainer(
-        borderRadius: 0,
-        horizontalPadding: 0,
+    return AppBorderContainer(
+      borderRadius: 0,
+      horizontalPadding: 0,
+      child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -95,7 +94,6 @@ class _TradeCopiersState extends ConsumerState<TradeCopiers> {
                       lastItem: (index < searchResult.length - 1),
                     ),
                   ),
-            Gap(bottomPaddding),
           ],
         ),
       ),

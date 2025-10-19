@@ -19,7 +19,11 @@ class AppBorderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
+      margin: EdgeInsets.only(
+        left: horizontalMargin,
+        right: horizontalMargin,
+        bottom: 40,
+      ),
       padding: EdgeInsets.symmetric(
         horizontal: horizontalPadding,
         vertical: verticalPadding,

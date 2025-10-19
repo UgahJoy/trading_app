@@ -5,17 +5,17 @@ import 'package:trading_app/theme/colors.dart';
 class AppButton extends StatefulWidget {
   final String text;
   final Function() onTap;
-  final List<Color>? color;
-  final List<double>? stops;
   final double? fontSize;
   final Color? buttonTextColor;
+  final bool isEnabled;
   const AppButton({
     super.key,
     required this.text,
-    this.color,
+
     this.fontSize,
     this.buttonTextColor,
-    this.stops,
+
+    this.isEnabled = true,
     required this.onTap,
   });
 
@@ -36,16 +36,20 @@ class _AppButtonState extends State<AppButton> {
           borderRadius: BorderRadius.circular(8),
 
           gradient: LinearGradient(
-            stops: widget.stops ?? [0.05, 0.6, 1.0],
+            stops: widget.isEnabled ? [0.05, 0.6, 1.0] : [0.0, 0.5, 1.0],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors:
-                widget.color ??
-                [
-                  AppColors.buttonBlue,
-                  AppColors.buttonPurple,
-                  AppColors.buttonPink,
-                ],
+            colors: widget.isEnabled
+                ? [
+                    AppColors.buttonBlue,
+                    AppColors.buttonPurple,
+                    AppColors.buttonPink,
+                  ]
+                : [
+                    AppColors.buttonGradient1.withValues(alpha: 0.2),
+                    AppColors.buttonPurple.withValues(alpha: 0.2),
+                    AppColors.buttonGradient2.withValues(alpha: 0.25),
+                  ],
           ),
         ),
         child: Center(
