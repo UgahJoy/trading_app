@@ -7,6 +7,7 @@ class AppBorderContainer2 extends StatelessWidget {
   final double? horizontalPadding;
   final double? verticalPadding;
   final double? bottomBorderRadius;
+
   const AppBorderContainer2({
     super.key,
     required this.child,

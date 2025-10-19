@@ -22,7 +22,7 @@ class BottomNav extends StatelessWidget {
         color: AppColors.navGrey,
         border: Border(top: BorderSide(color: AppColors.navBorder)),
       ),
-      padding: EdgeInsets.symmetric(vertical: 16),
+      padding: EdgeInsets.only(top: 16),
 
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -31,7 +31,6 @@ class BottomNav extends StatelessWidget {
           children: [
             AppButton(text: buttonText, onTap: onTap),
             Gap(bottomPaddding),
-            Gap(8),
           ],
         ),
       ),

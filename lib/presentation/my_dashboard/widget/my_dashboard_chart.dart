@@ -1,30 +1,19 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:trading_app/helper_files/all_datums.dart';
+import 'package:trading_app/shared_widgets/app_border_container.dart';
 import 'package:trading_app/shared_widgets/filter_widget.dart';
 import 'package:trading_app/shared_widgets/app_chart_widget.dart';
 import 'package:trading_app/shared_widgets/trade_history_widget.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class MyDashboardChart extends StatelessWidget {
-  MyDashboardChart({super.key});
-  final List<FlSpot> spotsData = [
-    FlSpot(1760313627310, 1),
-    FlSpot(1760400027378, 20),
-    FlSpot(1760486427463, 12),
-    FlSpot(1760572827627, 8),
-    FlSpot(1760659227739, 12),
-    FlSpot(1760745626985, 25),
-    FlSpot(1760832027161, 3),
-  ];
+  const MyDashboardChart({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
-        border: Border.all(color: AppColors.navBorder),
-        color: AppColors.navGrey,
-      ),
+    return AppBorderContainer(
+      bottomPadding: 20,
       child: SingleChildScrollView(
         child: Column(
           children: [

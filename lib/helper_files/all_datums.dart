@@ -1,3 +1,5 @@
+import 'package:fl_chart/fl_chart.dart';
+
 List<StaticticsDataTumItem> myDashboardStatictis = [
   StaticticsDataTumItem(name: "PRO traders", value: "17", isProTrader: true),
   StaticticsDataTumItem(name: "Trading days", value: "43"),
@@ -53,4 +55,17 @@ List<String> tradingPairItem = [
   "TIAUSDT",
   "DOGEUSDT",
   "PERPUSDT",
+];
+
+final List<FlSpot> spotsData = [
+  FlSpot(1760313627310, 1),
+  FlSpot(1760400027378, 20),
+  FlSpot(1760486427463, 12),
+  FlSpot(1760572827627, 8),
+  FlSpot(1760659227739, 12),
+  FlSpot(1760745626985, 25),
+  FlSpot(1760832027161, 3),
+  FlSpot(1760918427161, 15),
+  FlSpot(1761004827161, 28),
+  FlSpot(1761091227161, 5),
 ];

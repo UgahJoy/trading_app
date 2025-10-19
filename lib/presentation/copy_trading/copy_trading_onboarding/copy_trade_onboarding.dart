@@ -6,10 +6,10 @@ import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/copy_trade_risk_level.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/bottom_nav.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/progress_indicator.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
+import 'package:trading_app/shared_widgets/bottom_nav.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
@@ -123,8 +123,11 @@ class _CopyTradeOnboardingState extends State<CopyTradeOnboarding> {
 
                   Expanded(
                     child: FadeInDown(
-                      child: Image.asset(
-                        "assets/onboarding_${data[index].image}.png",
+                      child: Align(
+                        alignment: AlignmentGeometry.center,
+                        child: Image.asset(
+                          "assets/onboarding_${data[index].image}.png",
+                        ),
                       ),
                     ),
                   ),

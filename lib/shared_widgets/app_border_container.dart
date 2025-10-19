@@ -7,10 +7,12 @@ class AppBorderContainer extends StatelessWidget {
   final double horizontalPadding;
   final double horizontalMargin;
   final double verticalPadding;
+  final double bottomPadding;
   const AppBorderContainer({
     super.key,
     required this.child,
     this.borderRadius = 16,
+    this.bottomPadding = 0,
     this.horizontalMargin = 0,
     this.verticalPadding = 16,
     this.horizontalPadding = 16,
@@ -22,7 +24,7 @@ class AppBorderContainer extends StatelessWidget {
       margin: EdgeInsets.only(
         left: horizontalMargin,
         right: horizontalMargin,
-        bottom: 40,
+        bottom: bottomPadding,
       ),
       padding: EdgeInsets.symmetric(
         horizontal: horizontalPadding,

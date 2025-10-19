@@ -11,7 +11,7 @@ class MyDashboardCurrentTrades extends StatelessWidget {
       horizontalPadding: 0,
       child: ListView.builder(
         itemCount: 2,
-        physics: NeverScrollableScrollPhysics(),
+
         shrinkWrap: true,
         itemBuilder: (context, index) =>
             TradeHistoryWidget(isCurrentTrade: true),

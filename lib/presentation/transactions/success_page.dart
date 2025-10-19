@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/extensions.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/bottom_nav.dart';
 import 'package:trading_app/presentation/dashboard/dashboard.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
+import 'package:trading_app/shared_widgets/bottom_nav.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 

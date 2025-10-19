@@ -8,6 +8,7 @@ class FilterItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      clipBehavior: Clip.hardEdge,
       margin: EdgeInsets.only(right: 8),
       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
       decoration: BoxDecoration(
@@ -18,6 +19,8 @@ class FilterItem extends StatelessWidget {
         children: [
           Text(
             "7 days",
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(fontSize: 14, color: AppColors.primaryColor),
           ),
           Gap(8),

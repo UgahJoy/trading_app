@@ -113,7 +113,7 @@ class _TradeMenuState extends State<TradeMenu> {
                 ),
               ),
 
-              Gap(24),
+              Gap(20),
               Text(
                 "Earn",
                 style: header.copyWith(
@@ -161,7 +161,13 @@ class TradeMenuActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppInkWell(
-      onTap: () => model.onTap!(),
+      onTap: () {
+        if (model.onTap == null) {
+          return;
+        } else {
+          model.onTap!();
+        }
+      },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: screenPaddding, vertical: 6),
         child: Row(

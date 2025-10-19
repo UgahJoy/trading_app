@@ -68,20 +68,25 @@ class _AllTradeHistoryState extends ConsumerState<AllTradeHistory> {
         horizontalPadding: 0,
         child: Column(
           children: [
-            Row(
-              children: [
-                TradeHistorySelector(
-                  currentIndex: currentIndex,
-                  onTap: (val) {
-                    _onPageChanged(val);
-                  },
+            Align(
+              alignment: Alignment.centerLeft,
+              child: FittedBox(
+                child: Row(
+                  children: [
+                    TradeHistorySelector(
+                      currentIndex: currentIndex,
+                      onTap: (val) {
+                        _onPageChanged(val);
+                      },
+                    ),
+
+                    Opacity(
+                      opacity: currentIndex == 0 ? 0 : 1,
+                      child: FilterItem(),
+                    ),
+                  ],
                 ),
-                Spacer(),
-                Opacity(
-                  opacity: currentIndex == 0 ? 0 : 1,
-                  child: FilterItem(),
-                ),
-              ],
+              ),
             ),
             Expanded(
               child: IndexedStack(

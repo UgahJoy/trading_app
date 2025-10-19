@@ -5,9 +5,9 @@ import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_selector/copy_trading_dashboard_choice_selector.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/bottom_nav.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/cop_trading_risk_levels_selectors.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
+import 'package:trading_app/shared_widgets/bottom_nav.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 
 class CopyTradeRiskLevel extends StatefulWidget {
