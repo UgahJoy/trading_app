@@ -4,8 +4,8 @@ import 'package:trading_app/shared_widgets/app_back_button.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class TractionAppBar extends StatelessWidget {
-  const TractionAppBar({super.key});
+class TranxAppBar extends StatelessWidget {
+  const TranxAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

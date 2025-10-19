@@ -3,17 +3,19 @@ import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/all_datums.dart';
 import 'package:trading_app/shared_widgets/app_border_conatiner_2.dart';
 import 'package:trading_app/shared_widgets/filter_widget.dart';
-import 'package:trading_app/presentation/my_dashboard/widget/statictics_item.dart';
+import 'package:trading_app/shared_widgets/statictics_item.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class AppStatisticsWidget extends StatelessWidget {
   final List<String> tradingPairItem;
   final double bottomBorderRadius;
+  final List<StaticticsDataTumItem> model;
   const AppStatisticsWidget({
     super.key,
     required this.tradingPairItem,
     this.bottomBorderRadius = 16,
+    required this.model,
   });
 
   @override
@@ -35,16 +37,12 @@ class AppStatisticsWidget extends StatelessWidget {
                 ),
 
                 ListView.builder(
-                  itemCount: statictis.length,
+                  itemCount: model.length,
                   shrinkWrap: true,
+
                   physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) => StatisticsItem(
-                    text: statictis[index].title,
-                    value: statictis[index].value,
-                    isLoss: statictis[index].isLoss,
-                    isPro: statictis[index].isPro,
-                    isLast: (index < statictis.length - 1),
-                  ),
+                  itemBuilder: (context, index) =>
+                      StatisticsItem(model: model[index]),
                 ),
                 Container(
                   height: 6,

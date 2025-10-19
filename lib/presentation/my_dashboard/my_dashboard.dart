@@ -101,7 +101,9 @@ class _MyDashboardState extends ConsumerState<MyDashboard> {
           Expanded(
             child: PageView(
               onPageChanged: (value) {
-                setState(() {});
+                setState(() {
+                  currentIndex = value;
+                });
               },
               controller: _pageController,
               children: [

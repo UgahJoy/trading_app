@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:trading_app/helper_files/all_datums.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class StatisticsItem extends StatelessWidget {
-  final String text;
-  final String value;
-  final bool? isLoss;
-  final bool? isPro;
-  final bool isLast;
-  const StatisticsItem({
-    super.key,
-    required this.value,
-    required this.text,
-    this.isLoss,
-    this.isPro,
-    this.isLast = false,
-  });
+  final StaticticsDataTumItem model;
+  const StatisticsItem({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +35,16 @@ class StatisticsItem extends StatelessWidget {
                 ],
               ),
               Gap(16),
-              Expanded(child: Text(text)),
+              Expanded(child: Text(model.name)),
               Text(
-                value,
+                model.value,
                 style: TextStyle(
-                  color: isLoss == true
+                  color: model.isLoss!
                       ? AppColors.red
-                      : isPro == true
+                      : model.isProTrader!
                       ? AppColors.indicatorBlue
+                      : model.isRIO!
+                      ? AppColors.chartGreen
                       : AppColors.primaryColor,
                 ),
               ),
@@ -60,7 +52,7 @@ class StatisticsItem extends StatelessWidget {
           ),
         ),
         Gap(12),
-        if (isLast) ...[Divider()],
+        if (model.isLast!) ...[Divider()],
       ],
     );
   }

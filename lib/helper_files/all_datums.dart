@@ -1,29 +1,56 @@
-List<StatisticDataTum> statictis = [
-  StatisticDataTum(title: "PRO traders", value: "17", isPro: true),
-  StatisticDataTum(title: "Trading days", value: "43"),
-  StatisticDataTum(title: "Profit-share", value: "15%"),
-  StatisticDataTum(title: "Total orders", value: "56"),
-  StatisticDataTum(title: "Average losses", value: "0 USDT", isLoss: true),
-  StatisticDataTum(title: "Total copy trades", value: "72"),
-  StatisticDataTum(title: "Trading days", value: "17"),
-  StatisticDataTum(title: "Total orders", value: "37"),
+List<StaticticsDataTumItem> myDashboardStatictis = [
+  StaticticsDataTumItem(name: "PRO traders", value: "17", isProTrader: true),
+  StaticticsDataTumItem(name: "Trading days", value: "43"),
+  StaticticsDataTumItem(name: "Profit-share", value: "15%"),
+  StaticticsDataTumItem(name: "Total orders", value: "56"),
+  StaticticsDataTumItem(name: "Average losses", value: "0 USDT", isLoss: true),
+  StaticticsDataTumItem(name: "Total copy trades", value: "72"),
+  StaticticsDataTumItem(name: "Trading days", value: "17"),
+  StaticticsDataTumItem(name: "Total orders", value: "37", isLast: false),
 ];
 
-class StatisticDataTum {
-  final String title;
-  final String value;
-  final bool? isLoss;
-  final bool? isPro;
-  StatisticDataTum({
-    this.isLoss,
-    this.isPro,
-    required this.title,
-    required this.value,
-  });
-}
+List<StaticticsDataTumItem> tradingDetailsStatictis = [
+  StaticticsDataTumItem(name: "Average ROI", value: "+33.73%", isRIO: true),
+  StaticticsDataTumItem(name: "Win rates", value: "100%"),
+  StaticticsDataTumItem(name: "Total Profit", value: "61850.63 USDT"),
+  StaticticsDataTumItem(name: "Average losses", value: "0 USDT", isLoss: true),
+  StaticticsDataTumItem(name: "Total trades", value: "72", isLast: false),
+];
 
 class CopyTradeRiskLevelDataTum {
   final String title;
   final String body;
   CopyTradeRiskLevelDataTum({required this.body, required this.title});
 }
+
+class StaticticsDataTumItem {
+  final String name;
+  final String value;
+  final bool? isProTrader;
+  final bool? isLoss;
+  final bool? isRIO;
+  final bool? isLast;
+  StaticticsDataTumItem({
+    this.isLoss = false,
+    this.isProTrader = false,
+    this.isRIO = false,
+    this.isLast = true,
+    required this.name,
+    required this.value,
+  });
+}
+
+List<String> tradingPairItem = [
+  "BTCUSDT",
+  "ETHUSDT",
+  "XRPUSDT",
+  "TIAUSDT",
+  "DOGEUSDT",
+  "PERPUSDT",
+  "TIAUSDT",
+  "DOGEUSDT",
+  "PERPUSDT",
+  "TIAUSDT",
+  "DOGEUSDT",
+  "PERPUSDT",
+];

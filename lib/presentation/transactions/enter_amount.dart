@@ -65,7 +65,7 @@ class _EnterAmountState extends State<EnterAmount> {
       body: Column(
         children: [
           Gap(topPadding),
-          TractionAppBar(),
+          TranxAppBar(),
           Gap(context.deviceHeight * 0.09),
 
           SizedBox(
