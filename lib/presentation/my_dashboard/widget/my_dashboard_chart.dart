@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/shared_widgets/filter_widget.dart';
@@ -6,8 +7,21 @@ import 'package:trading_app/shared_widgets/trade_history_widget.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class MyDashboardChart extends StatelessWidget {
-  const MyDashboardChart({super.key});
-
+  MyDashboardChart({super.key});
+  final List<FlSpot> spotsData = [
+    FlSpot(0, 2),
+    FlSpot(1, 3),
+    FlSpot(2, 4),
+    FlSpot(3, 5),
+    FlSpot(4, 6),
+    FlSpot(5, 6),
+    FlSpot(6, 6),
+    FlSpot(7, 6),
+    FlSpot(8, 4),
+    FlSpot(9, 6),
+    FlSpot(10, 6),
+    FlSpot(11, 7),
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +39,9 @@ class MyDashboardChart extends StatelessWidget {
               child: FilterWidget(text: "Copy trading PNL"),
             ),
             Gap(12),
-            AppChartItem(),
+            AppChartItem(
+              valueSpots: spotsData.map((e) => FlSpot(e.x, e.y)).toList(),
+            ),
             Gap(16),
             Container(
               height: 2,
@@ -43,7 +59,7 @@ class MyDashboardChart extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (context, index) =>
-                  TradeHistoryWidget(isTradeHistory: false),
+                  TradeHistoryWidget(isCurrentTrade: false),
             ),
           ],
         ),

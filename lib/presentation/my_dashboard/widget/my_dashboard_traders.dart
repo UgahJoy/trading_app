@@ -5,17 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/helper_files/helper_function.dart';
-import 'package:trading_app/models/all_copy_traders_model.dart';
-import 'package:trading_app/models/pro_traders_model.dart';
-import 'package:trading_app/repositories/global_repository.dart';
-import 'package:trading_app/shared_state/app_state.dart';
-import 'package:trading_app/shared_widgets/all_traders_details.dart';
+import 'package:trading_app/presentation/my_dashboard/widget/my_traders_widget.dart';
 import 'package:trading_app/shared_widgets/app_border_conatiner_2.dart';
 import 'package:trading_app/shared_widgets/app_textfield.dart';
 
 class MyDashboardTraders extends ConsumerStatefulWidget {
-  final ProTradersModel? model;
-  const MyDashboardTraders({super.key, this.model});
+  const MyDashboardTraders({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -23,36 +18,14 @@ class MyDashboardTraders extends ConsumerStatefulWidget {
 }
 
 class _MyDashboardTradersState extends ConsumerState<MyDashboardTraders> {
-  bool isBusy = true;
-
-  @override
-  void initState() {
-    isBusy = ref.read(appState).allCopyTraders.isEmpty;
-    if (isBusy) {
-      ref
-          .read(globalRepository)
-          .fectAllCopyTraders(widget.model?.leadPortfolioId ?? "")
-          .then((val) {
-            isBusy = false;
-            if (mounted) {
-              setState(() {});
-            }
-          });
-    }
-    super.initState();
-  }
+  List<String> traderNames = ["Jaykay Kayode", "Okobi Laura", "Tosin Lasisi"];
 
   final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final List<AllCopyTradersModel> allTradersList =
-        ref.watch(appState).allCopyTraders[widget.model?.leadPortfolioId] ?? [];
-
-    var searchResult = allTradersList
+    var searchResult = traderNames
         .where(
-          (e) => e.nickname.toString().toLowerCase().contains(
-            searchController.text.toLowerCase(),
-          ),
+          (e) => e.toLowerCase().contains(searchController.text.toLowerCase()),
         )
         .toList();
     return AppBorderContainer2(
@@ -77,11 +50,10 @@ class _MyDashboardTradersState extends ConsumerState<MyDashboardTraders> {
               itemCount: searchResult.length,
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => AllTradersDetails(
+              itemBuilder: (context, index) => MyTradersWidget(
                 bgColor: generateRandomColor(index),
-                model: searchResult[index],
-                color: generateRandomColor(index),
-                lastItem: (index < searchResult.length - 1),
+                tradersName: searchResult[index],
+                isLastItem: index == (searchResult.length - 1),
               ),
             ),
             Gap(bottomPaddding),

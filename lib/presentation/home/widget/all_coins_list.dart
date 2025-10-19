@@ -97,7 +97,12 @@ class CoinItems extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: screenPaddding, vertical: 12),
       child: Row(
         children: [
-          AppNetWorkImage(imageUrl: model.image ?? "", height: 32, width: 32),
+          AppNetWorkImage(
+            fallBackAssetImage: "assets/roqque.png",
+            imageUrl: model.image ?? "",
+            height: 32,
+            width: 32,
+          ),
           Gap(20),
           Expanded(
             child: Column(

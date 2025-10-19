@@ -4,8 +4,8 @@ import 'package:trading_app/shared_widgets/trade_histry_widget_item.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class TradeHistoryWidget extends StatelessWidget {
-  final bool isTradeHistory;
-  const TradeHistoryWidget({super.key, required this.isTradeHistory});
+  final bool isCurrentTrade;
+  const TradeHistoryWidget({super.key, required this.isCurrentTrade});
 
   @override
   Widget build(BuildContext context) {
@@ -50,20 +50,34 @@ class TradeHistoryWidget extends StatelessWidget {
           ),
         ),
 
-        TradeHistoryWidgetItem(
-          showImage: true,
-          title: "PRO trader",
-          value: "BTC master",
-        ),
-        TradeHistoryWidgetItem(title: "Entry price", value: "1.9661 USDT"),
-        TradeHistoryWidgetItem(title: "Exit price", value: "1.9728 USDT"),
-        TradeHistoryWidgetItem(
-          title: "PRO trader amount",
-          value: "1009.772 USDT",
-        ),
-        TradeHistoryWidgetItem(title: "Entry time", value: "01:22 PM"),
-        TradeHistoryWidgetItem(title: "Exit time", value: "01:22 PM"),
-        Gap(20),
+        if (isCurrentTrade) ...[
+          TradeHistoryWidgetItem(
+            showImage: true,
+            title: "PRO trader",
+            value: "BTC master",
+          ),
+          TradeHistoryWidgetItem(title: "Entry price", value: "1.9661 USDT"),
+          TradeHistoryWidgetItem(title: "Market price", value: "1.9728 USDT"),
+
+          TradeHistoryWidgetItem(title: "Entry time", value: "01:22 PM"),
+
+          Gap(20),
+        ] else ...[
+          TradeHistoryWidgetItem(
+            showImage: true,
+            title: "PRO trader",
+            value: "BTC master",
+          ),
+          TradeHistoryWidgetItem(title: "Entry price", value: "1.9661 USDT"),
+          TradeHistoryWidgetItem(title: "Exit price", value: "1.9728 USDT"),
+          TradeHistoryWidgetItem(
+            title: "PRO trader amount",
+            value: "1009.772 USDT",
+          ),
+          TradeHistoryWidgetItem(title: "Entry time", value: "01:22 PM"),
+          TradeHistoryWidgetItem(title: "Exit time", value: "01:22 PM"),
+          Gap(20),
+        ],
       ],
     );
   }

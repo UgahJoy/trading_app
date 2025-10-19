@@ -3,17 +3,17 @@ import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/helper_function.dart';
 import 'package:trading_app/models/all_copy_traders_model.dart';
 import 'package:trading_app/shared_widgets/name_abbrevation_widget.dart';
-import 'package:trading_app/shared_widgets/total_volume_and_profit_widget.dart';
+import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class AllTradersDetails extends StatelessWidget {
+class AllCopiersDetials extends StatelessWidget {
   final AllCopyTradersModel model;
   final Color color;
   final Color bgColor;
   final bool showCopy;
   final bool lastItem;
   final bool showTag;
-  const AllTradersDetails({
+  const AllCopiersDetials({
     super.key,
     required this.color,
     this.showTag = true,
@@ -70,7 +70,38 @@ class AllTradersDetails extends StatelessWidget {
         ),
 
         Gap(12),
-        TotalVolumeAndProfitWidget(model: model),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Total volume"),
+                    Gap(8),
+                    Text(
+                      "${(model.balanceAmount)?.toStringAsFixed(2)} USDT",
+                      style: header2,
+                    ),
+                  ],
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text("Trading profit", textAlign: TextAlign.right),
+                  Gap(8),
+                  Text(
+                    "${(model.totalPnl)?.toStringAsFixed(2)} USDT",
+                    textAlign: TextAlign.right,
+                    style: header2,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
 
         if (lastItem) ...[
           Container(

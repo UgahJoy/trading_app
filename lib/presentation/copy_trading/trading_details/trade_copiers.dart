@@ -10,7 +10,7 @@ import 'package:trading_app/repositories/global_repository.dart';
 import 'package:trading_app/shared_state/app_state.dart';
 import 'package:trading_app/shared_widgets/app_loader.dart';
 import 'package:trading_app/shared_widgets/empty_state_widget.dart';
-import 'package:trading_app/shared_widgets/all_traders_details.dart';
+import 'package:trading_app/presentation/copy_trading/trading_details/widgets/all_copiers_details.dart';
 import 'package:trading_app/shared_widgets/app_border_container.dart';
 import 'package:trading_app/shared_widgets/app_textfield.dart';
 
@@ -86,7 +86,7 @@ class _TradeCopiersState extends ConsumerState<TradeCopiers> {
                     itemCount: searchResult.length,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) => AllTradersDetails(
+                    itemBuilder: (context, index) => AllCopiersDetials(
                       showTag: false,
                       bgColor: generateRandomColor(index),
                       model: searchResult[index],

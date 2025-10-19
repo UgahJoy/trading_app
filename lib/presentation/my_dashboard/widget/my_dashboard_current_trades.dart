@@ -14,7 +14,7 @@ class MyDashboardCurrentTrades extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) =>
-            TradeHistoryWidget(isTradeHistory: false),
+            TradeHistoryWidget(isCurrentTrade: true),
       ),
     );
   }

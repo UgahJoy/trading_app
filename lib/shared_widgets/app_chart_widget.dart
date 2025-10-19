@@ -9,6 +9,7 @@ class AppChartItem extends StatelessWidget {
     Color? line1Color,
     Color? line2Color,
     Color? betweenColor,
+    required this.valueSpots,
   }) : line1Color = line1Color ?? AppColors.generalAppLineChartGreen,
        line2Color = line2Color ?? AppColors.generalAppLineChartGreen2,
        betweenColor =
@@ -17,6 +18,7 @@ class AppChartItem extends StatelessWidget {
   final Color line1Color;
   final Color line2Color;
   final Color betweenColor;
+  final List<FlSpot> valueSpots;
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     if (value.toInt() % 2 != 0) {
@@ -44,27 +46,10 @@ class AppChartItem extends StatelessWidget {
     );
   }
 
-  static const List<FlSpot> spotsData = [
-    FlSpot(0, 2),
-    FlSpot(1, 3),
-    FlSpot(2, 4),
-    FlSpot(3, 5),
-    FlSpot(4, 6),
-    FlSpot(5, 6),
-    FlSpot(6, 6),
-    FlSpot(7, 6),
-    FlSpot(8, 4),
-    FlSpot(9, 6),
-    FlSpot(10, 6),
-    FlSpot(11, 7),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    final List<FlSpot> spotsDataGlow = spotsData
-        .map(
-          (spot) => FlSpot(spot.x, spot.y + 0.5),
-        ) // Offset by +0.1 on the Y-axis
+    final List<FlSpot> spotsDataGlow = valueSpots
+        .map((spot) => FlSpot(spot.x, spot.y + 0.5))
         .toList();
 
     return AspectRatio(
@@ -95,46 +80,12 @@ class AppChartItem extends StatelessWidget {
               ),
 
               LineChartBarData(
-                spots: spotsData, // Use the same data
+                spots: valueSpots,
                 isCurved: true,
-                barWidth: 2, // Keep it thin (e.g., 2)
-                color: line1Color, // Keep it opaque
+                barWidth: 2,
+                color: line1Color,
                 dotData: const FlDotData(show: false),
-
-                // Area fill for the gradient below
               ),
-
-              // LineChartBarData(
-              //   spots: const [
-              //     FlSpot(0, 2),
-              //     FlSpot(1, 3),
-              //     FlSpot(2, 4),
-              //     FlSpot(3, 5),
-              //     FlSpot(4, 6),
-              //     FlSpot(5, 6),
-              //     FlSpot(6, 6),
-              //     FlSpot(7, 6),
-              //     FlSpot(8, 4),
-              //     FlSpot(9, 6),
-              //     FlSpot(10, 6),
-              //     FlSpot(11, 7),
-              //   ],
-              //   isCurved: true,
-              //   barWidth: 2,
-              //   color: line1Color,
-              //   dotData: const FlDotData(show: false),
-              //   belowBarData: BarAreaData(
-              //     show: true,
-              //     gradient: LinearGradient(
-              //       colors: [
-              //         line1Color.withValues(alpha: 0.2),
-              //         line1Color.withValues(alpha: 0),
-              //       ],
-              //       begin: Alignment.topCenter,
-              //       end: Alignment.bottomCenter,
-              //     ),
-              //   ),
-              // ),
             ],
 
             minY: 0,

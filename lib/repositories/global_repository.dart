@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trading_app/models/all_coin_model.dart';
 import 'package:trading_app/models/all_copy_traders_model.dart';
+import 'package:trading_app/models/pnl_graph_model.dart';
 import 'package:trading_app/models/pro_traders_model.dart';
+import 'package:trading_app/models/rio_graph_model.dart';
 import 'package:trading_app/models/trade_history_mode.dart';
 import 'package:trading_app/services/api_services.dart';
 import 'package:trading_app/shared_state/app_state.dart';
@@ -90,5 +92,33 @@ class GlobalRepository {
           (response as List).map((e) => AllCoinModel.fromJson(e)).toList(),
         );
     return;
+  }
+
+  Future<void> fetchRioGraphDetails() async {
+    String key =
+        "https://www.binance.com/bapi/futures/v1/public/future/spot-copy-trade/lead-portfolio/performance-chart-data?dataType=ROI&portfolioId=3964077903873533185&timeRange=7D";
+    var response = await ApiServices(key: key).getRequst(isFull: true);
+    if (response == "failed") {
+      return;
+    }
+    ref
+        .read(appState)
+        .updateRoiGraph(
+          (response['data'] as List).map((e) => RioModel.fromJson(e)).toList(),
+        );
+  }
+
+  Future<void> fetchPNLGraphDetails() async {
+    String key =
+        "https://www.binance.com/bapi/futures/v1/public/future/spot-copy-trade/lead-portfolio/performance-chart-data?dataType=PNL&portfolioId=3964077903873533185&timeRange=7D";
+    var response = await ApiServices(key: key).getRequst();
+    if (response == "failed") {
+      return;
+    }
+    ref
+        .read(appState)
+        .updatePNLGraph(
+          (response['data'] as List).map((e) => PnlModel.fromJson(e)).toList(),
+        );
   }
 }
