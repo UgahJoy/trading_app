@@ -1,7 +1,7 @@
 class RioModel {
-  final double? value;
+  final num? value;
   final String? dataType;
-  final dynamic dateTime;
+  final num? dateTime;
 
   RioModel({this.value, this.dataType, this.dateTime});
 

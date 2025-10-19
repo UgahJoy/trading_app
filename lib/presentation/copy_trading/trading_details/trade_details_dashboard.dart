@@ -87,7 +87,7 @@ class _TradeDetailsDashboardState extends State<TradeDetailsDashboard> {
               },
               controller: _pageController,
               children: [
-                TradingDetailsChart(),
+                TradingDetailsChart(model: widget.model),
                 TradeingStatistics(),
                 AllTradeHistory(model: widget.model),
                 TradeCopiers(model: widget.model),

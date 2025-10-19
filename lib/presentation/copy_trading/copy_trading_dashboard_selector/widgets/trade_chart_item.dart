@@ -101,6 +101,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget>
     final List<num> values = widget.chartItems
         .map((e) => e.value ?? 0)
         .toList();
+
     _minYValue = getMinValue(values);
     _maxYValue = getMaxValue(values);
 

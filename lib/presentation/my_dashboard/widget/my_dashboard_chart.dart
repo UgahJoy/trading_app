@@ -9,18 +9,13 @@ import 'package:trading_app/theme/colors.dart';
 class MyDashboardChart extends StatelessWidget {
   MyDashboardChart({super.key});
   final List<FlSpot> spotsData = [
-    FlSpot(0, 2),
-    FlSpot(1, 3),
-    FlSpot(2, 4),
-    FlSpot(3, 5),
-    FlSpot(4, 6),
-    FlSpot(5, 6),
-    FlSpot(6, 6),
-    FlSpot(7, 6),
-    FlSpot(8, 4),
-    FlSpot(9, 6),
-    FlSpot(10, 6),
-    FlSpot(11, 7),
+    FlSpot(1760313627310, 1),
+    FlSpot(1760400027378, 20),
+    FlSpot(1760486427463, 12),
+    FlSpot(1760572827627, 8),
+    FlSpot(1760659227739, 12),
+    FlSpot(1760745626985, 25),
+    FlSpot(1760832027161, 3),
   ];
   @override
   Widget build(BuildContext context) {
@@ -39,9 +34,7 @@ class MyDashboardChart extends StatelessWidget {
               child: FilterWidget(text: "Copy trading PNL"),
             ),
             Gap(12),
-            AppChartItem(
-              valueSpots: spotsData.map((e) => FlSpot(e.x, e.y)).toList(),
-            ),
+            AppChartItem(isPNL: true, valueSpots: spotsData),
             Gap(16),
             Container(
               height: 2,

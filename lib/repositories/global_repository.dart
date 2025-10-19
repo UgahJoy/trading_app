@@ -59,14 +59,9 @@ class GlobalRepository {
   }
 
   Future<void> fectAllCopyTraders(String portfolioId) async {
-    var response =
-        await ApiServices(
-          key: "spot-copy-trade/lead-portfolio/get-copy-trader-result-by-page",
-        ).postRequst({
-          "pageNumber": 1,
-          "pageSize": 50,
-          "portfolioId": portfolioId, //"3964077903873533185",
-        });
+    var response = await ApiServices(
+      key: "spot-copy-trade/lead-portfolio/get-copy-trader-result-by-page",
+    ).postRequst({"pageNumber": 1, "pageSize": 50, "portfolioId": portfolioId});
     if (response == "failed") {
       return;
     }
@@ -94,9 +89,9 @@ class GlobalRepository {
     return;
   }
 
-  Future<void> fetchRioGraphDetails() async {
+  Future<void> fetchRioGraphDetails(String portfolioId) async {
     String key =
-        "https://www.binance.com/bapi/futures/v1/public/future/spot-copy-trade/lead-portfolio/performance-chart-data?dataType=ROI&portfolioId=3964077903873533185&timeRange=7D";
+        "https://www.binance.com/bapi/futures/v1/public/future/spot-copy-trade/lead-portfolio/performance-chart-data?dataType=ROI&portfolioId=$portfolioId&timeRange=7D";
     var response = await ApiServices(key: key).getRequst(isFull: true);
     if (response == "failed") {
       return;
@@ -104,20 +99,22 @@ class GlobalRepository {
     ref
         .read(appState)
         .updateRoiGraph(
+          portfolioId,
           (response['data'] as List).map((e) => RioModel.fromJson(e)).toList(),
         );
   }
 
-  Future<void> fetchPNLGraphDetails() async {
+  Future<void> fetchPNLGraphDetails(String portfolioId) async {
     String key =
-        "https://www.binance.com/bapi/futures/v1/public/future/spot-copy-trade/lead-portfolio/performance-chart-data?dataType=PNL&portfolioId=3964077903873533185&timeRange=7D";
-    var response = await ApiServices(key: key).getRequst();
+        "https://www.binance.com/bapi/futures/v1/public/future/spot-copy-trade/lead-portfolio/performance-chart-data?dataType=PNL&portfolioId=$portfolioId&timeRange=90D";
+    var response = await ApiServices(key: key).getRequst(isFull: true);
     if (response == "failed") {
       return;
     }
     ref
         .read(appState)
         .updatePNLGraph(
+          portfolioId,
           (response['data'] as List).map((e) => PnlModel.fromJson(e)).toList(),
         );
   }

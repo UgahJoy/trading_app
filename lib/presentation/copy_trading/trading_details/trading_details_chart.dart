@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/helper_files/extensions.dart';
+import 'package:trading_app/models/pro_traders_model.dart';
 import 'package:trading_app/presentation/copy_trading/trading_details/widgets/allocation_item.dart';
 import 'package:trading_app/repositories/global_repository.dart';
 import 'package:trading_app/shared_state/app_state.dart';
@@ -17,7 +17,8 @@ import 'package:trading_app/shared_widgets/app_chart_widget.dart';
 import 'package:trading_app/theme/colors.dart';
 
 class TradingDetailsChart extends ConsumerStatefulWidget {
-  const TradingDetailsChart({super.key});
+  final ProTradersModel model;
+  const TradingDetailsChart({super.key, required this.model});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -26,26 +27,50 @@ class TradingDetailsChart extends ConsumerStatefulWidget {
 
 class _TradingDetailsChartState extends ConsumerState<TradingDetailsChart> {
   bool isBusy = true;
+  bool isBusy2 = true;
   @override
   void initState() {
-    isBusy = ref.read(appState).rioGraph.isEmpty;
+    isBusy = (ref.read(appState).rioGraph[widget.model.leadPortfolioId] ?? [])
+        .isEmpty;
     if (isBusy) {
-      ref.read(globalRepository).fetchRioGraphDetails().then((val) {
-        isBusy = false;
-        if (mounted) {
-          setState(() {});
-        }
-      });
+      ref
+          .read(globalRepository)
+          .fetchRioGraphDetails(widget.model.leadPortfolioId ?? "")
+          .then((val) {
+            isBusy = false;
+            if (mounted) {
+              setState(() {});
+            }
+          });
+    }
+
+    isBusy2 = (ref.read(appState).pNLGraph[widget.model.leadPortfolioId] ?? [])
+        .isEmpty;
+    if (isBusy2) {
+      ref
+          .read(globalRepository)
+          .fetchPNLGraphDetails(widget.model.leadPortfolioId ?? "")
+          .then((val) {
+            isBusy2 = false;
+            if (mounted) {
+              setState(() {});
+            }
+          });
     }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var rioSpots = ref.watch(appState).rioGraph;
+    var rioSpots =
+        ref.watch(appState).rioGraph[widget.model.leadPortfolioId] ?? [];
+    var pNLSpots =
+        ref.watch(appState).pNLGraph[widget.model.leadPortfolioId] ?? [];
     return CheckMarkIndicator(
       onRefresh: () async {
-        await ref.watch(globalRepository).fetchRioGraphDetails();
+        await ref
+            .watch(globalRepository)
+            .fetchRioGraphDetails(widget.model.leadPortfolioId ?? "");
       },
       child: SingleChildScrollView(
         child: Column(
@@ -67,11 +92,12 @@ class _TradingDetailsChartState extends ConsumerState<TradingDetailsChart> {
                       : rioSpots.isEmpty
                       ? EmptyStateWidget()
                       : AppChartItem(
+                          isPNL: false,
                           valueSpots: rioSpots
                               .map(
                                 (e) => FlSpot(
-                                  (e.dataType ?? "").toDouble(),
-                                  (e.value ?? 0),
+                                  (e.dateTime ?? 0).toDouble(),
+                                  (e.value ?? 0).toDouble(),
                                 ),
                               )
                               .toList(),
@@ -90,7 +116,21 @@ class _TradingDetailsChartState extends ConsumerState<TradingDetailsChart> {
                     padding: EdgeInsets.symmetric(horizontal: screenPaddding),
                     child: FilterWidget(text: "Total PNL"),
                   ),
-                  //  AppChartItem(),
+                  isBusy2
+                      ? AppLoader()
+                      : pNLSpots.isEmpty
+                      ? EmptyStateWidget()
+                      : AppChartItem(
+                          isPNL: true,
+                          valueSpots: pNLSpots
+                              .map(
+                                (e) => FlSpot(
+                                  (e.dateTime ?? 0).toDouble(),
+                                  (e.value ?? 0).toDouble(),
+                                ),
+                              )
+                              .toList(),
+                        ),
                 ],
               ),
             ),

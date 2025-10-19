@@ -14,8 +14,8 @@ class AppState with ChangeNotifier {
   List<ProTradersModel> allProTraders = [];
   List<AllCoinModel> allCoins = [];
   Map<String, List<TradeHistoryModel>> allTradeHistory = {};
-  List<PnlModel> pNLGraph = [];
-  List<RioModel> rioGraph = [];
+  Map<String, List<PnlModel>> pNLGraph = {};
+  Map<String, List<RioModel>> rioGraph = {};
   AppState(this.ref);
 
   void updateAllProTraders(List<ProTradersModel> allTraders) {
@@ -42,13 +42,13 @@ class AppState with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateRoiGraph(List<RioModel> rioGraph) {
-    this.rioGraph = rioGraph;
+  void updateRoiGraph(String portfolioId, rioGraph) {
+    this.rioGraph[portfolioId] = rioGraph;
     notifyListeners();
   }
 
-  void updatePNLGraph(List<PnlModel> pNLGraph) {
-    this.pNLGraph = pNLGraph;
+  void updatePNLGraph(String portfolioId, List<PnlModel> pNLGraph) {
+    this.pNLGraph[portfolioId] = pNLGraph;
     notifyListeners();
   }
 }
