@@ -5,7 +5,7 @@ import 'package:trading_app/shared_widgets/app_Inkwell.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class DashboardOptions extends StatelessWidget {
+class DashboardChoiceSelectorWidget extends StatelessWidget {
   final List<Color> colors;
   final List<Color>? colors2;
   final List<double>? stops;
@@ -13,7 +13,7 @@ class DashboardOptions extends StatelessWidget {
   final String title;
   final String caption;
   final Function() onTap;
-  const DashboardOptions({
+  const DashboardChoiceSelectorWidget({
     super.key,
     required this.caption,
     required this.colors,

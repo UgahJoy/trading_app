@@ -3,22 +3,26 @@ import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/helper_function.dart';
 import 'package:trading_app/models/pro_traders_model.dart';
-import 'package:trading_app/presentation/copy_trading/trade_details/trade_details.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_picker/widgets/trade_chart_item.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_picker/widgets/traders_name_widget.dart';
+import 'package:trading_app/presentation/copy_trading/trading_details/trade_details_dashboard.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_selector/widgets/trade_chart_item.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_selector/widgets/traders_name_widget.dart';
 import 'package:trading_app/shared_widgets/app_Inkwell.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class ProTraders extends StatelessWidget {
+class DashboardChoiceProTradersWidget extends StatelessWidget {
   final ProTradersModel model;
   final Color bgColor;
-  const ProTraders({super.key, required this.bgColor, required this.model});
+  const DashboardChoiceProTradersWidget({
+    super.key,
+    required this.bgColor,
+    required this.model,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppInkWell(
-      onTap: () => AppRouter.navigateTo(TradeDetails(model: model)),
+      onTap: () => AppRouter.navigateTo(TradeDetailsDashboard(model: model)),
       child: Stack(
         clipBehavior: Clip.none,
         children: [

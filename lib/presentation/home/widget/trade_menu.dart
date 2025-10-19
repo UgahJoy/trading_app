@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/helper_files/extensions.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_picker/copy_trading_dashboard_picker.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_selector/copy_trading_dashboard_choice_selector.dart';
 import 'package:trading_app/shared_widgets/app_InkWell.dart';
 import 'package:trading_app/shared_widgets/app_border_container.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
@@ -50,7 +50,7 @@ class _TradeMenuState extends State<TradeMenu> {
           isClosed = true;
           widget.onClose(true, () {
             isClosed = false;
-            AppRouter.navigateTo(CopyTradeDashBoardPicker());
+            AppRouter.navigateTo(CopyTradeDashBoardChoiceSelector());
           });
         },
       ),

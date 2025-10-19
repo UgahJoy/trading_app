@@ -1,26 +1,26 @@
 import 'dart:async';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/risk_level.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/copy_trade_risk_level.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/bottom_nav.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/progress_indicator.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/onboarding_body.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class Onboarding extends StatefulWidget {
-  const Onboarding({super.key});
+class CopyTradeOnboarding extends StatefulWidget {
+  const CopyTradeOnboarding({super.key});
 
   @override
-  State<Onboarding> createState() => _OnboardingState();
+  State<CopyTradeOnboarding> createState() => _CopyTradeOnboardingState();
 }
 
-class _OnboardingState extends State<Onboarding> {
+class _CopyTradeOnboardingState extends State<CopyTradeOnboarding> {
   final PageController _pageController = PageController();
   late Timer _timer;
   List<DataTum> data = [
@@ -67,7 +67,7 @@ class _OnboardingState extends State<Onboarding> {
     return AppScaffold(
       bottomNavigationBar: BottomNav(
         buttonText: "Get started",
-        onTap: () => AppRouter.navigateTo(RiskLevel()),
+        onTap: () => AppRouter.navigateTo(CopyTradeRiskLevel()),
       ),
       body: Column(
         children: [
@@ -105,11 +105,30 @@ class _OnboardingState extends State<Onboarding> {
               scrollDirection: Axis.horizontal,
               physics: NeverScrollableScrollPhysics(),
               controller: _pageController,
-              itemBuilder: (context, index) => OnboardingBody(
-                title: data[index].title,
-                caption: data[index].caption,
-                image: data[index].image,
-                currentIndex: currentIndex,
+              itemBuilder: (context, index) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Gap(28),
+
+                  currentIndex == 0
+                      ? FadeInLeft(
+                          child: Text(data[index].title, style: header),
+                        )
+                      : FadeInRight(
+                          child: Text(data[index].title, style: header),
+                        ),
+                  Gap(4),
+                  FadeInUp(child: Text(data[index].caption)),
+
+                  Expanded(
+                    child: FadeInDown(
+                      child: Image.asset(
+                        "assets/onboarding_${data[index].image}.png",
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

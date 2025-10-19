@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:trading_app/helper_files/all_datums.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/shared_widgets/app_bar_item.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_picker/copy_trading_dashboard_picker.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_dashboard_selector/copy_trading_dashboard_choice_selector.dart';
 import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/bottom_nav.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/risk_levels_selectors.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/widgets/cop_trading_risk_levels_selectors.dart';
 import 'package:trading_app/shared_widgets/app_scaffold.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 
-class RiskLevel extends StatefulWidget {
-  const RiskLevel({super.key});
+class CopyTradeRiskLevel extends StatefulWidget {
+  const CopyTradeRiskLevel({super.key});
 
   @override
-  State<RiskLevel> createState() => _RiskLevelState();
+  State<CopyTradeRiskLevel> createState() => _CopyTradeRiskLevelState();
 }
 
-class _RiskLevelState extends State<RiskLevel> {
+class _CopyTradeRiskLevelState extends State<CopyTradeRiskLevel> {
   int currentIndex = 0;
-  List<DataTum> riskLevelSelector = [
-    DataTum(
+  List<CopyTradeRiskLevelDataTum> riskLevelSelector = [
+    CopyTradeRiskLevelDataTum(
       body:
           "Conservative profile involves stable returns from proven strategies with minimal volatility.",
       title: "Conservative profile",
     ),
-    DataTum(
+    CopyTradeRiskLevelDataTum(
       body:
           "Steady growth involves balanced gains with moderate fluctuations in strategy performance.",
       title: "Steady growth profile",
     ),
 
-    DataTum(
+    CopyTradeRiskLevelDataTum(
       body:
           "It has potentials for significant gains or losses due to aggressive trading and market exposure.",
       title: "Exponential growth profile",
@@ -42,7 +43,7 @@ class _RiskLevelState extends State<RiskLevel> {
     return AppScaffold(
       bottomNavigationBar: BottomNav(
         buttonText: "Proceed",
-        onTap: () => AppRouter.navigateTo(CopyTradeDashBoardPicker()),
+        onTap: () => AppRouter.navigateTo(CopyTradeDashBoardChoiceSelector()),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,9 +59,8 @@ class _RiskLevelState extends State<RiskLevel> {
           Expanded(
             child: ListView.builder(
               itemCount: riskLevelSelector.length,
-              itemBuilder: (context, index) => RiskLevelSelector(
-                body: riskLevelSelector[index].body,
-                title: riskLevelSelector[index].title,
+              itemBuilder: (context, index) => CopyTradeRiskLevelSelectors(
+                model: riskLevelSelector[index],
                 index: index,
                 onTap: () {
                   setState(() {
@@ -75,10 +75,4 @@ class _RiskLevelState extends State<RiskLevel> {
       ),
     );
   }
-}
-
-class DataTum {
-  final String title;
-  final String body;
-  DataTum({required this.body, required this.title});
 }

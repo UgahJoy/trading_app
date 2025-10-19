@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:trading_app/helper_files/app_router.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/onboarding.dart';
+import 'package:trading_app/presentation/copy_trading/copy_trading_onboarding/copy_trade_onboarding.dart';
 import 'package:trading_app/shared_widgets/app_InkWell.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
@@ -16,7 +16,7 @@ class CopyTradingWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: AppInkWell(
-        onTap: () => AppRouter.navigateTo(Onboarding()),
+        onTap: () => AppRouter.navigateTo(CopyTradeOnboarding()),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),

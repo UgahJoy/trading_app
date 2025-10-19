@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:trading_app/helper_files/all_datums.dart';
 import 'package:trading_app/shared_widgets/app_Inkwell.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
 
-class RiskLevelSelector extends StatelessWidget {
+class CopyTradeRiskLevelSelectors extends StatelessWidget {
   final int index;
   final int currentIndex;
-  final String title;
-  final String body;
+  final CopyTradeRiskLevelDataTum model;
+
   final Function() onTap;
-  const RiskLevelSelector({
+  const CopyTradeRiskLevelSelectors({
     super.key,
-    required this.body,
+
     required this.currentIndex,
     required this.index,
-    required this.title,
+    required this.model,
     required this.onTap,
   });
 
@@ -59,7 +60,7 @@ class RiskLevelSelector extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title,
+                  model.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: header.copyWith(
@@ -68,7 +69,7 @@ class RiskLevelSelector extends StatelessWidget {
                   ),
                 ),
                 Gap(12),
-                Text(body, style: TextStyle(height: 1.4, fontSize: 14)),
+                Text(model.body, style: TextStyle(height: 1.4, fontSize: 14)),
               ],
             ),
           ),

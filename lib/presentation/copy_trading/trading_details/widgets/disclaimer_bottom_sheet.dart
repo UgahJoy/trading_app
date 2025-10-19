@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/app_router.dart';
-import 'package:trading_app/presentation/copy_trading/trade_details/widgets/risk_bottom_sheet.dart';
+import 'package:trading_app/presentation/copy_trading/trading_details/widgets/risk_bottom_sheet.dart';
 import 'package:trading_app/shared_widgets/app_Inkwell.dart';
 import 'package:trading_app/shared_widgets/app_alert.dart';
 import 'package:trading_app/shared_widgets/app_bottom_sheet_cancel_button.dart';

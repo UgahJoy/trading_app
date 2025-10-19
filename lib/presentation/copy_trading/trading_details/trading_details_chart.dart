@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/copy_trading/trade_details/widgets/allocation_item.dart';
+import 'package:trading_app/presentation/copy_trading/trading_details/widgets/allocation_item.dart';
 import 'package:trading_app/shared_widgets/filter_widget.dart';
-import 'package:trading_app/presentation/copy_trading/trade_details/widgets/holding_period_item.dart';
+import 'package:trading_app/presentation/copy_trading/trading_details/widgets/holding_period_item.dart';
 import 'package:trading_app/shared_widgets/app_border_container.dart';
 import 'package:trading_app/shared_widgets/app_chart_widget.dart';
 import 'package:trading_app/theme/colors.dart';

@@ -34,3 +34,9 @@ class StatisticDataTum {
     required this.value,
   });
 }
+
+class CopyTradeRiskLevelDataTum {
+  final String title;
+  final String body;
+  CopyTradeRiskLevelDataTum({required this.body, required this.title});
+}
