@@ -58,10 +58,11 @@ class _TradeCopiersState extends ConsumerState<TradeCopiers> {
           ),
         )
         .toList();
-    return AppBorderContainer(
-      borderRadius: 0,
-      horizontalPadding: 0,
-      child: SingleChildScrollView(
+
+    return SingleChildScrollView(
+      child: AppBorderContainer(
+        borderRadius: 0,
+        horizontalPadding: 0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

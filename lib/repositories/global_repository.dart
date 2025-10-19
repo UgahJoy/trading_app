@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trading_app/models/all_coin_model.dart';
 import 'package:trading_app/models/all_copy_traders_model.dart';
 import 'package:trading_app/models/pro_traders_model.dart';
 import 'package:trading_app/models/trade_history_mode.dart';
@@ -73,5 +74,21 @@ class GlobalRepository {
         .toList();
 
     ref.read(appState).updateAllCopyTraders(portfolioId, newTradersData);
+  }
+
+  Future<void> fetchAllCoins() async {
+    String key =
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1&sparkline=false";
+    var response = await ApiServices(key: key).getRequst(isFull: true);
+    if (response == "failed") {
+      return;
+    }
+
+    ref
+        .read(appState)
+        .updateAllCoins(
+          (response as List).map((e) => AllCoinModel.fromJson(e)).toList(),
+        );
+    return;
   }
 }

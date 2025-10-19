@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:trading_app/helper_files/constants.dart';
-import 'package:trading_app/presentation/dashboard/widget/country_selector.dart';
-import 'package:trading_app/presentation/dashboard/widget/crypto.dart';
-import 'package:trading_app/presentation/dashboard/widget/not_icon.dart';
+import 'package:trading_app/presentation/dashboard/widget/crypto_container_widget.dart';
 
 class DashboardAppBar extends StatelessWidget {
   const DashboardAppBar({super.key});
@@ -18,7 +16,7 @@ class DashboardAppBar extends StatelessWidget {
             Gap(topPadding),
             Row(
               children: [
-                Crypto(),
+                CryptoContainerWidget(),
                 Spacer(),
                 Image.asset("assets/search.png", height: 20),
                 Gap(16),
@@ -26,7 +24,7 @@ class DashboardAppBar extends StatelessWidget {
                 Gap(16),
                 NotIcon(),
                 Gap(16),
-                CountrySelector(),
+                CountrySelectorWidget(),
               ],
             ),
             Gap(20),

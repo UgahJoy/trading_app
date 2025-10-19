@@ -7,71 +7,75 @@ class TradeActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.navBorder),
-            color: AppColors.navGrey,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppColors.navBorder),
+              color: AppColors.navGrey,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ActionItems(
+                    image: "assets/deposite.png",
+                    onTap: () {},
+                    text: "Deposit",
+                  ),
+                ),
+                Expanded(
+                  child: ActionItems(
+                    image: "assets/buy.png",
+                    onTap: () {},
+                    text: "Buy",
+                  ),
+                ),
+                Expanded(
+                  child: ActionItems(
+                    image: "assets/withdraw.png",
+                    onTap: () {},
+                    text: "Withdraw",
+                  ),
+                ),
+                Expanded(
+                  child: ActionItems(
+                    image: "assets/sell.png",
+                    onTap: () {},
+                    text: "Sell",
+                  ),
+                ),
+              ],
+            ),
           ),
-          child: Row(
-            children: [
-              Expanded(
-                child: ActionItems(
-                  image: "assets/deposite.png",
-                  onTap: () {},
-                  text: "Deposit",
-                ),
-              ),
-              Expanded(
-                child: ActionItems(
-                  image: "assets/buy.png",
-                  onTap: () {},
-                  text: "Buy",
-                ),
-              ),
-              Expanded(
-                child: ActionItems(
-                  image: "assets/withdraw.png",
-                  onTap: () {},
-                  text: "Withdraw",
-                ),
-              ),
-              Expanded(
-                child: ActionItems(
-                  image: "assets/sell.png",
-                  onTap: () {},
-                  text: "Sell",
-                ),
-              ),
-            ],
-          ),
-        ),
 
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(12)),
-            border: Border(
-              top: BorderSide.none,
-              left: BorderSide(color: AppColors.navBorder),
-              right: BorderSide(color: AppColors.navBorder),
-              bottom: BorderSide(color: AppColors.navBorder),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(12)),
+              border: Border(
+                top: BorderSide.none,
+                left: BorderSide(color: AppColors.navBorder),
+                right: BorderSide(color: AppColors.navBorder),
+                bottom: BorderSide(color: AppColors.navBorder),
+              ),
+              color: AppColors.navGrey,
             ),
-            color: AppColors.navGrey,
-          ),
-          child: Text(
-            "See more",
-            style: TextStyle(
-              color: AppColors.indicatorBlue,
-              fontWeight: FontWeight.w500,
-              fontSize: 12,
+            child: Text(
+              "See more",
+              style: TextStyle(
+                color: AppColors.indicatorBlue,
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+              ),
             ),
           ),
-        ),
-      ],
+          Gap(28),
+        ],
+      ),
     );
   }
 }

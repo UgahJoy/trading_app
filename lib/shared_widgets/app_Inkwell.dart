@@ -11,6 +11,9 @@ class AppInkWell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      focusColor: AppColors.transparent,
+      highlightColor: AppColors.transparent,
+      hoverColor: AppColors.transparent,
       splashColor: AppColors.transparent,
       onTap: onTap,
       child: child,

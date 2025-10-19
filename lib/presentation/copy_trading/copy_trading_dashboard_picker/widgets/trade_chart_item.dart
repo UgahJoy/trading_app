@@ -154,6 +154,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget>
     }).toList();
 
     return LineChartData(
+      lineTouchData: LineTouchData(enabled: false),
       gridData: const FlGridData(show: false),
       titlesData: const FlTitlesData(show: false),
       borderData: FlBorderData(show: false),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:trading_app/helper_files/constants.dart';
 import 'package:trading_app/helper_files/extensions.dart';
 import 'package:trading_app/theme/app_textstyle.dart';
 import 'package:trading_app/theme/colors.dart';
@@ -14,12 +13,10 @@ class Updates extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          width: context.deviceWidth * 0.8,
+          margin: EdgeInsets.symmetric(horizontal: 8),
+          width: context.deviceWidth,
 
-          padding: EdgeInsets.symmetric(
-            horizontal: screenPaddding,
-            vertical: 20,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: AppColors.navBorder),
@@ -63,21 +60,24 @@ class Updates extends StatelessWidget {
 
         index % 2 == 1
             ? Positioned(
-                right: 20,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(14),
-                      bottomRight: Radius.circular(0),
-                      bottomLeft: Radius.circular(8),
-                    ),
+                right: 0,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(14),
+                        bottomRight: Radius.circular(0),
+                        bottomLeft: Radius.circular(8),
+                      ),
 
-                    color: AppColors.red2.withValues(alpha: 0.1),
-                  ),
-                  child: Text(
-                    "Urgent Notice",
-                    style: TextStyle(color: AppColors.red),
+                      color: AppColors.red2.withValues(alpha: 0.1),
+                    ),
+                    child: Text(
+                      "Urgent Notice",
+                      style: TextStyle(color: AppColors.red),
+                    ),
                   ),
                 ),
               )

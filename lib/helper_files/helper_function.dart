@@ -66,6 +66,13 @@ String getPnLValue(double value) {
   return "+\$${formatNumbers(value, formateForm: "#,##0.00")}";
 }
 
+String getPnLValue2(double value) {
+  if (value <= 0) {
+    return "-${(formatNumbers(value * -1, formateForm: "#,##0.00"))}";
+  }
+  return "+${formatNumbers(value, formateForm: "#,##0.00")}";
+}
+
 double getMinValue(List<num> items) {
   if (items.isEmpty) {
     return 0.0;
