@@ -63,7 +63,7 @@ class _AppChartItemState extends State<AppChartItem>
       child: FittedBox(
         child: Text(
           maxLines: 1,
-          '${value.toStringAsFixed(1)} ${widget.isPNL ? "%" : "k"}',
+          '${formatNumberAbbreviated(value)}${widget.isPNL ? "" : "%"}',
           style: style,
         ),
       ),

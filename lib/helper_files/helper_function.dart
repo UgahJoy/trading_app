@@ -117,3 +117,15 @@ String formatNumberWithCommas(String number) {
   }
   return result;
 }
+
+String formatNumberAbbreviated(num number) {
+  if (number >= 1e9) {
+    return '${(number / 1e9).toStringAsFixed(1).replaceAll(RegExp(r"\.0$"), "")}B';
+  } else if (number >= 1e6) {
+    return '${(number / 1e6).toStringAsFixed(1).replaceAll(RegExp(r"\.0$"), "")}M';
+  } else if (number >= 1e3) {
+    return '${(number / 1e3).toStringAsFixed(1).replaceAll(RegExp(r"\.0$"), "")}K';
+  } else {
+    return formatNumbers(number.toString());
+  }
+}
